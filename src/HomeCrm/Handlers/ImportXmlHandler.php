@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\HomeCrm\Handlers;
 
+use App\Entity\Realty;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ImportXmlHandler
@@ -29,10 +31,28 @@ class ImportXmlHandler
 
     public function __invoke()
     {
-        $realties = $this->serializer->deserialize(self::HOME_CRM_DATA_XML, Realty::class, xml);
+        $xmlData = file_get_contents(self::HOME_CRM_DATA_XML);
+        $encoder = new XmlEncoder();
+        $arrayData = $encoder->decode($xmlData, 'xml');
+        foreach($arrayData['offer'] as $data){
+            $realtyRepository = $this->em->getRepository(Realty::class);
+            $existRealty = $realtyRepository->findOneBy(['code' => $data['@internal-id']]);
 
-        $this->em->persist($realties);
+            $realty = $this->serializer->denormalize($data, Realty::class);
+            if($existRealty){
+                $realty->setId($existRealty->getId());
+            }
+
+            $this->em->persist($realty);
+        }
         $this->em->flush();
+        echo "<pre>";
+        print_r($arrayData);
+        echo "</pre>";
+//        $realties = $this->serializer->deserialize($xmlData, Realty::class, 'xml');
+
+//        $this->em->persist($realties);
+//        $this->em->flush();
 
         return "ок";
     }
