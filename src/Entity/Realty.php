@@ -31,17 +31,6 @@ class Realty
      */
     private $type;
 
-    public function __construct(string $code, string $type)
-    {
-        $this->type = $type;
-        $this->code = $code;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
     public function getId(): int
     {
         return $this->id;
@@ -55,6 +44,16 @@ class Realty
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
 }
