@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\ServiceController;
+namespace App\Controller\Realty;
 
-use App\HomeCrm\Handlers\ImportXmlHandler;
+use App\Realty\Service\ImportHomeCrmData;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class ImportCrmDataController
+class ImportCrmData
 {
     /**
-     * @var ImportXmlHandler
+     * @var ImportHomeCrmData
      */
     private $importXmlHandler;
 
-    public function __construct(ImportXmlHandler $importXmlHandler)
+    public function __construct(ImportHomeCrmData $importXmlHandler)
     {
         $this->importXmlHandler = $importXmlHandler;
     }

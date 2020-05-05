@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Entity\Realty;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @ORM\Entity
  */
 
-class Realty
+class Property
 {
     /**
      * @ORM\Id
@@ -27,7 +27,7 @@ class Realty
     private $code;
 
     /**
-     * @ORM\Column
+     * @ORM\ManyToOne(targetEntity="Type")
      */
     private $type;
 
@@ -36,12 +36,12 @@ class Realty
         return $this->id;
     }
 
-    public function getType(): string
+    public function getType()
     {
         return $this->type;
     }
 
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -51,7 +51,7 @@ class Realty
         $this->code = $code;
     }
 
-    public function setType(string $type): void
+    public function setType($type): void
     {
         $this->type = $type;
     }
