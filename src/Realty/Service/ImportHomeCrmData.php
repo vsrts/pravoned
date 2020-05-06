@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Realty\Service;
 
+use App\Entity\Realty\Category;
 use App\Entity\Realty\Property;
+use App\Entity\Realty\PropertyType;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -41,7 +43,7 @@ class ImportHomeCrmData
         foreach($arrayData['offer'] as $data){
             $existRealty = $realtyRepository->findOneBy(['code' => $data['@internal-id']]);
 
-            $context = null;
+            $context = [];
 
             if($existRealty){
                 $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $existRealty, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true];
@@ -49,9 +51,13 @@ class ImportHomeCrmData
 
             $realty = $this->serializer->denormalize($data, Property::class, null, $context);
 
-            $type = $this->getTargetObject($data['type'], Type::class, 'type');
+            $type = $this->getTargetObject($data['type'], Type::class, 'typeName');
+            $propertyType = $this->getTargetObject($data['property-type'], PropertyType::class, 'propertyTypeName');
+            $category = $this->getTargetObject($data['category'], Category::class, 'categoryName');
 
             $realty->setType($type);
+            $realty->setPropertyType($propertyType);
+            $realty->setCategory($category);
 
             $this->em->persist($realty);
 

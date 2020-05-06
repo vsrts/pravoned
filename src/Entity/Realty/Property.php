@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Property
 {
     /**
+     * @var int
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -21,27 +22,49 @@ class Property
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(unique=true)
      * @SerializedName("@internal-id")
      */
     private $code;
 
     /**
+     * @var Type
      * @ORM\ManyToOne(targetEntity="Type")
      */
     private $type;
+
+    /**
+     * @var PropertyType
+     * @ORM\ManyToOne(targetEntity="PropertyType")
+     * @SerializedName("property-type")
+     */
+    private $propertyType;
+
+    /**
+     * @var Category
+     * @ORM\ManyToOne(targetEntity="Category")
+     */
+    private $category;
+
+    /**
+     * @var \DateTimeInterface
+     * @ORM\Column(type="datetimetz")
+     * @SerializedName("creation-date")
+     */
+    private $createdAt;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function getType()
+    public function getType(): Type
     {
         return $this->type;
     }
 
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }
@@ -51,9 +74,41 @@ class Property
         $this->code = $code;
     }
 
-    public function setType($type): void
+    public function setType(Type $type): void
     {
         $this->type = $type;
     }
+
+    public function getPropertyType(): PropertyType
+    {
+        return $this->propertyType;
+    }
+
+    public function setPropertyType(PropertyType $propertyType): void
+    {
+        $this->propertyType = $propertyType;
+    }
+
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+
 
 }

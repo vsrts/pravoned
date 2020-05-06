@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 
-class Type
+class Category
 {
     /**
      * @var int
@@ -23,13 +23,13 @@ class Type
 
     /**
      * @var string
-     * @ORm\Column
+     * @ORM\Column
      */
-    private $typeName;
+    private $categoryName;
 
-    public function __construct($typeName = null)
+    public function __construct(string $categoryName = null)
     {
-        $this->typeName = $typeName;
+        $this->categoryName = $categoryName;
     }
 
     public function getId(): int
@@ -37,9 +37,9 @@ class Type
         return $this->id;
     }
 
-    public function getTypeName(): string
+    public function getCategoryName(): string
     {
-        return $this->typeName;
+        return $this->categoryName;
     }
 
 }
