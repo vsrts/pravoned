@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ImportHomeCrmData
@@ -43,10 +44,10 @@ class ImportHomeCrmData
         foreach($arrayData['offer'] as $data){
             $existRealty = $realtyRepository->findOneBy(['code' => $data['@internal-id']]);
 
-            $context = [];
+            $context = [ObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true];
 
             if($existRealty){
-                $context = [AbstractNormalizer::OBJECT_TO_POPULATE => $existRealty, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true];
+                $context = array_merge($context, [AbstractNormalizer::OBJECT_TO_POPULATE => $existRealty, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true]);
             }
 
             $realty = $this->serializer->denormalize($data, Property::class, null, $context);

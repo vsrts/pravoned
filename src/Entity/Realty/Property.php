@@ -54,6 +54,12 @@ class Property
      */
     private $createdAt;
 
+    /**
+     * @var Location
+     * @ORM\OneToOne(targetEntity="Location", cascade="persist")
+     */
+    private $location;
+
     public function getId(): int
     {
         return $this->id;
@@ -109,6 +115,14 @@ class Property
         $this->createdAt = $createdAt;
     }
 
+    public function getLocation(): Location
+    {
+        return $this->location;
+    }
 
+    public function setLocation(Location $location): void
+    {
+        $this->location = $location;
+    }
 
 }
