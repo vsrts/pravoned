@@ -60,6 +60,13 @@ class Property
      */
     private $location;
 
+    /**
+     * @var Agent
+     * @ORM\ManyToOne(targetEntity="Agent", cascade="persist")
+     * @SerializedName("sales-agent")
+     */
+    private $agent;
+
     public function getId(): int
     {
         return $this->id;
@@ -123,6 +130,16 @@ class Property
     public function setLocation(Location $location): void
     {
         $this->location = $location;
+    }
+
+    public function getAgent(): Agent
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(Agent $agent): void
+    {
+        $this->agent = $agent;
     }
 
 }

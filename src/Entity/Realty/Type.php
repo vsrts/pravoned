@@ -23,7 +23,7 @@ class Type
 
     /**
      * @var string
-     * @ORm\Column
+     * @ORM\Column
      */
     private $typeName;
 
