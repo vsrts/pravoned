@@ -6,6 +6,7 @@ namespace App\Entity\Realty;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,7 @@ class Property
      * @var string
      * @ORM\Column(unique=true)
      * @SerializedName("@internal-id")
+     * @Groups("import_denormalize")
      */
     private $code;
 
@@ -51,19 +53,20 @@ class Property
      * @var \DateTimeInterface
      * @ORM\Column(type="datetimetz")
      * @SerializedName("creation-date")
+     * @Groups("import_denormalize")
      */
     private $createdAt;
 
     /**
      * @var Location
      * @ORM\OneToOne(targetEntity="Location", cascade="persist")
+     * @Groups("import_denormalize")
      */
     private $location;
 
     /**
      * @var Agent
      * @ORM\ManyToOne(targetEntity="Agent", cascade="persist")
-     * @SerializedName("sales-agent")
      */
     private $agent;
 

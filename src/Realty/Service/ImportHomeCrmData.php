@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Realty\Service;
 
+use App\Entity\Realty\Agent;
 use App\Entity\Realty\Category;
 use App\Entity\Realty\Property;
 use App\Entity\Realty\PropertyType;
@@ -35,35 +36,34 @@ class ImportHomeCrmData
         $this->em = $em;
     }
 
-    public function __invoke()
+    public function importData()
     {
         $xmlData = file_get_contents(self::HOME_CRM_DATA_XML);
         $encoder = new XmlEncoder();
         $arrayData = $encoder->decode($xmlData, 'xml');
-        $realtyRepository = $this->em->getRepository(Property::class);
+
         foreach($arrayData['offer'] as $data){
-            $existRealty = $realtyRepository->findOneBy(['code' => $data['@internal-id']]);
 
-            $context = [ObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true];
-
-            if($existRealty){
-                $context = array_merge($context, [AbstractNormalizer::OBJECT_TO_POPULATE => $existRealty, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true]);
-            }
-
-            $realty = $this->serializer->denormalize($data, Property::class, null, $context);
+            $propertyContext = ['groups' => ['import_denormalize']];
+            $realty = $this->getDenormalizedObject($data, Property::class, 'code', $data['@internal-id'], $propertyContext);
 
             $type = $this->getTargetObject($data['type'], Type::class, 'typeName');
             $propertyType = $this->getTargetObject($data['property-type'], PropertyType::class, 'propertyTypeName');
             $category = $this->getTargetObject($data['category'], Category::class, 'categoryName');
+            $agent = $this->getDenormalizedObject($data['sales-agent'], Agent::class, 'name', $data['sales-agent']['name']);
 
             $realty->setType($type);
             $realty->setPropertyType($propertyType);
             $realty->setCategory($category);
+            $realty->setAgent($agent);
 
             $this->em->persist($realty);
 
         }
+
         $this->em->flush();
+
+
         echo "<pre>";
         print_r($arrayData);
         echo "</pre>";
@@ -72,7 +72,30 @@ class ImportHomeCrmData
         return "ок";
     }
 
-    private function getTargetObject($data, $class, $searchColumn){
+    private function getDenormalizedObject(array $data, string $class, string $searchColumn, string $searchData, array $context = [])
+    {
+        $targetObjectRepository = $this->em->getRepository($class);
+        $targetObject = $targetObjectRepository->findOneBy([$searchColumn => $searchData]);
+
+        $defaultContext = [ObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true];
+        $context = array_merge($defaultContext, $context);
+
+        if($targetObject){
+            $context = array_merge($context, [AbstractNormalizer::OBJECT_TO_POPULATE => $targetObject, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true]);
+        }
+
+        $targetObject = $this->serializer->denormalize($data, $class, null, $context);
+
+        if(!($targetObject instanceof Property)){
+            $this->em->persist($targetObject);
+            $this->em->flush();
+        }
+
+        return $targetObject;
+    }
+
+    private function getTargetObject(string $data, string $class, string $searchColumn)
+    {
         $targetObjectRepository = $this->em->getRepository($class);
         $targetObject = $targetObjectRepository->findOneBy([$searchColumn => $data]);
 

@@ -6,6 +6,7 @@ namespace App\Entity\Realty;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -24,12 +25,14 @@ class Location
     /**
      * @var string
      * @ORM\Column
+     * @Groups("import_denormalize")
      */
     private $country;
 
     /**
      * @var string
      * @ORM\Column
+     * @Groups("import_denormalize")
      */
     private $region;
 
@@ -37,24 +40,28 @@ class Location
      * @var string
      * @ORM\Column
      * @SerializedName("locality-name")
+     * @Groups("import_denormalize")
      */
     private $localityName;
 
     /**
      * @var string|null
      * @ORM\Column
+     * @Groups("import_denormalize")
      */
     private $address;
 
     /**
      * @var float
      * @ORM\Column(type="float")
+     * @Groups("import_denormalize")
      */
     private $latitude;
 
     /**
      * @var float
      * @ORM\Column(type="float")
+     * @Groups("import_denormalize")
      */
     private $longitude;
 

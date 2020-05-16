@@ -25,7 +25,7 @@ class ImportCrmData
      * @Route("/import_crm", name="import_crm_data")
      */
     public function importCrmData(){
-        $result = $this->importXmlHandler->__invoke();
+        $result = $this->importXmlHandler->importData();
         return new Response($result);
     }
 }
