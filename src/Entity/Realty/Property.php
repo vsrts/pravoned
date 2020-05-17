@@ -70,6 +70,13 @@ class Property
      */
     private $agent;
 
+    /**
+     * @var Price
+     * @ORM\OneToOne(targetEntity="Price", cascade="persist")
+     * @Groups("import_denormalize")
+     */
+    private $price;
+
     public function getId(): int
     {
         return $this->id;
@@ -143,6 +150,16 @@ class Property
     public function setAgent(Agent $agent): void
     {
         $this->agent = $agent;
+    }
+
+    public function getPrice(): Price
+    {
+        return $this->price;
+    }
+
+    public function setPrice(Price $price): void
+    {
+        $this->price = $price;
     }
 
 }
