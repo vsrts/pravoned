@@ -57,7 +57,18 @@ class ImportHomeCrmData
             $realty->setCategory($category);
             $realty->setAgent($agent);
 
-            (array_key_exists('built-year', $data)) ?? $realty->setBuildYear((int)$data['built-year']['0']);
+            if(array_key_exists('built-year', $data)){
+                $realty->setBuildYear((int)$data['built-year']['0']);
+            }
+            if(array_key_exists('area', $data)){
+               $realty->setArea((float)$data['area']['value']);
+            }
+            if(array_key_exists('living-space', $data)){
+                $realty->setLivingSpace((float)$data['living-space']['value']);
+            }
+            if(array_key_exists('kitchen-space', $data)){
+                $realty->setKitchenSpace((float)$data['kitchen-space']['value']);
+            }
 
             $this->em->persist($realty);
 

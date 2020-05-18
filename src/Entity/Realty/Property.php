@@ -37,6 +37,14 @@ class Property
     private $type;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @SerializedName("deal-status")
+     * @Groups("import_denormalize")
+     */
+    private $dealStatus;
+
+    /**
      * @var PropertyType
      * @ORM\ManyToOne(targetEntity="PropertyType")
      * @SerializedName("property-type")
@@ -105,6 +113,24 @@ class Property
      * @Groups("import_denormalize")
      */
     private $description;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $area;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $livingSpace;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $kitchenSpace;
 
     public function getId(): int
     {
@@ -230,5 +256,46 @@ class Property
     {
         $this->description = $description;
     }
+
+    public function getArea(): ?float
+    {
+        return $this->area;
+    }
+
+    public function setArea(float $area): void
+    {
+        $this->area = $area;
+    }
+
+    public function getLivingSpace(): ?float
+    {
+        return $this->livingSpace;
+    }
+
+    public function setLivingSpace(float $livingSpace): void
+    {
+        $this->livingSpace = $livingSpace;
+    }
+
+    public function getKitchenSpace(): ?float
+    {
+        return $this->kitchenSpace;
+    }
+
+    public function setKitchenSpace(float $kitchenSpace): void
+    {
+        $this->kitchenSpace = $kitchenSpace;
+    }
+
+    public function getDealStatus(): ?string
+    {
+        return $this->dealStatus;
+    }
+
+    public function setDealStatus(string $dealStatus): void
+    {
+        $this->dealStatus = $dealStatus;
+    }
+
 
 }
