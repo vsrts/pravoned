@@ -57,6 +57,8 @@ class ImportHomeCrmData
             $realty->setCategory($category);
             $realty->setAgent($agent);
 
+            (array_key_exists('built-year', $data)) ?? $realty->setBuildYear((int)$data['built-year']['0']);
+
             $this->em->persist($realty);
 
         }

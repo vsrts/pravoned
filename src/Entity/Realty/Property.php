@@ -58,6 +58,12 @@ class Property
     private $createdAt;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $buildYear;
+
+    /**
      * @var Location
      * @ORM\OneToOne(targetEntity="Location", cascade="persist")
      * @Groups("import_denormalize")
@@ -76,6 +82,29 @@ class Property
      * @Groups("import_denormalize")
      */
     private $price;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("import_denormalize")
+     * @SerializedName("rent-pledge")
+     */
+    private $rentPledge;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("import_denormalize")
+     * @SerializedName("utilities-included")
+     */
+    private $utilitiesIncluded;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups("import_denormalize")
+     */
+    private $description;
 
     public function getId(): int
     {
@@ -160,6 +189,46 @@ class Property
     public function setPrice(Price $price): void
     {
         $this->price = $price;
+    }
+
+    public function getBuildYear(): ?int
+    {
+        return $this->buildYear;
+    }
+
+    public function setBuildYear(int $buildYear): void
+    {
+        $this->buildYear = $buildYear;
+    }
+
+    public function getRentPledge(): ?bool
+    {
+        return $this->rentPledge;
+    }
+
+    public function setRentPledge(bool $rentPledge): void
+    {
+        $this->rentPledge = $rentPledge;
+    }
+
+    public function isUtilitiesIncluded(): ?bool
+    {
+        return $this->utilitiesIncluded;
+    }
+
+    public function setUtilitiesIncluded(bool $utilitiesIncluded): void
+    {
+        $this->utilitiesIncluded = $utilitiesIncluded;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 
 }
