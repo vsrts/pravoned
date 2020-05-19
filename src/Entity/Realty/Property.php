@@ -37,14 +37,6 @@ class Property
     private $type;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", nullable=true)
-     * @SerializedName("deal-status")
-     * @Groups("import_denormalize")
-     */
-    private $dealStatus;
-
-    /**
      * @var PropertyType
      * @ORM\ManyToOne(targetEntity="PropertyType")
      * @SerializedName("property-type")
@@ -286,16 +278,5 @@ class Property
     {
         $this->kitchenSpace = $kitchenSpace;
     }
-
-    public function getDealStatus(): ?string
-    {
-        return $this->dealStatus;
-    }
-
-    public function setDealStatus(string $dealStatus): void
-    {
-        $this->dealStatus = $dealStatus;
-    }
-
 
 }
