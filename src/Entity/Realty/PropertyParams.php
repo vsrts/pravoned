@@ -74,6 +74,128 @@ class PropertyParams
      */
     private $floorsTotal;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $phone;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $internet;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("room-furniture")
+     */
+    private $roomFurniture;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("rubbish-chute")
+     */
+    private $rubbishChute;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("with-children")
+     */
+    private $withChildren;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("with-pets")
+     */
+    private $withPets;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $refrigerator;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("washing-machine")
+     */
+    private $washingMachine;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $dishwasher;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $television;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("air-conditioner")
+     */
+    private $airConditioner;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $shower;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $parcking;
+
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("bathroom-unit")
+     */
+    private $bathroomUnit;
+
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("window-view")
+     */
+    private $windowView;
+
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("building-type")
+     */
+    private $buildingType;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,5 +271,164 @@ class PropertyParams
         $this->floorsTotal = $floorsTotal;
     }
 
+    public function isPhone(): ?bool
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(bool $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function isInternet(): ?bool
+    {
+        return $this->internet;
+    }
+
+    public function setInternet(bool $internet): void
+    {
+        $this->internet = $internet;
+    }
+
+    public function isRoomFurniture(): ?bool
+    {
+        return $this->roomFurniture;
+    }
+
+    public function setRoomFurniture(bool $roomFurniture): void
+    {
+        $this->roomFurniture = $roomFurniture;
+    }
+
+    public function isRubbishChute(): ?bool
+    {
+        return $this->rubbishChute;
+    }
+
+    public function setRubbishChute(bool $rubbishChute): void
+    {
+        $this->rubbishChute = $rubbishChute;
+    }
+
+    public function isWithChildren(): ?bool
+    {
+        return $this->withChildren;
+    }
+
+    public function setWithChildren(bool $withChildren): void
+    {
+        $this->withChildren = $withChildren;
+    }
+
+    public function isWithPets(): ?bool
+    {
+        return $this->withPets;
+    }
+
+    public function setWithPets(bool $withPets): void
+    {
+        $this->withPets = $withPets;
+    }
+
+    public function isRefrigerator(): ?bool
+    {
+        return $this->refrigerator;
+    }
+
+    public function setRefrigerator(bool $refrigerator): void
+    {
+        $this->refrigerator = $refrigerator;
+    }
+
+    public function isWashingMachine(): ?bool
+    {
+        return $this->washingMachine;
+    }
+
+    public function setWashingMachine(bool $washingMachine): void
+    {
+        $this->washingMachine = $washingMachine;
+    }
+
+    public function isDishwasher(): ?bool
+    {
+        return $this->dishwasher;
+    }
+
+    public function setDishwasher(bool $dishwasher): void
+    {
+        $this->dishwasher = $dishwasher;
+    }
+
+    public function isTelevision(): ?bool
+    {
+        return $this->television;
+    }
+
+    public function setTelevision(bool $television): void
+    {
+        $this->television = $television;
+    }
+
+    public function isAirConditioner(): ?bool
+    {
+        return $this->airConditioner;
+    }
+
+    public function setAirConditioner(bool $airConditioner): void
+    {
+        $this->airConditioner = $airConditioner;
+    }
+
+    public function isShower(): ?bool
+    {
+        return $this->shower;
+    }
+
+    public function setShower(bool $shower): void
+    {
+        $this->shower = $shower;
+    }
+
+    public function isParcking(): ?bool
+    {
+        return $this->parcking;
+    }
+
+    public function setParcking(bool $parcking): void
+    {
+        $this->parcking = $parcking;
+    }
+
+    public function getBathroomUnit(): ?string
+    {
+        return $this->bathroomUnit;
+    }
+
+    public function setBathroomUnit(string $bathroomUnit): void
+    {
+        $this->bathroomUnit = $bathroomUnit;
+    }
+
+    public function getWindowView(): ?string
+    {
+        return $this->windowView;
+    }
+
+    public function setWindowView(string $windowView): void
+    {
+        $this->windowView = $windowView;
+    }
+
+    public function getBuildingType(): ?string
+    {
+        return $this->buildingType;
+    }
+
+    public function setBuildingType(string $buildingType): void
+    {
+        $this->buildingType = $buildingType;
+    }
 
 }
