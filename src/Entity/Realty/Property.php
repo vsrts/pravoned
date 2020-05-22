@@ -58,12 +58,6 @@ class Property
     private $createdAt;
 
     /**
-     * @var int
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $buildYear;
-
-    /**
      * @var Location
      * @ORM\OneToOne(targetEntity="Location", cascade="persist")
      * @Groups("import_denormalize")
@@ -84,22 +78,6 @@ class Property
     private $price;
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("import_denormalize")
-     * @SerializedName("rent-pledge")
-     */
-    private $rentPledge;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("import_denormalize")
-     * @SerializedName("utilities-included")
-     */
-    private $utilitiesIncluded;
-
-    /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
      * @Groups("import_denormalize")
@@ -107,22 +85,11 @@ class Property
     private $description;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", nullable=true)
+     * @var PropertyParams
+     * @ORM\OneToOne(targetEntity="PropertyParams")
      */
-    private $area;
+    private $propertyParams;
 
-    /**
-     * @var float
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $livingSpace;
-
-    /**
-     * @var float
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $kitchenSpace;
 
     public function getId(): int
     {
@@ -209,36 +176,6 @@ class Property
         $this->price = $price;
     }
 
-    public function getBuildYear(): ?int
-    {
-        return $this->buildYear;
-    }
-
-    public function setBuildYear(int $buildYear): void
-    {
-        $this->buildYear = $buildYear;
-    }
-
-    public function getRentPledge(): ?bool
-    {
-        return $this->rentPledge;
-    }
-
-    public function setRentPledge(bool $rentPledge): void
-    {
-        $this->rentPledge = $rentPledge;
-    }
-
-    public function isUtilitiesIncluded(): ?bool
-    {
-        return $this->utilitiesIncluded;
-    }
-
-    public function setUtilitiesIncluded(bool $utilitiesIncluded): void
-    {
-        $this->utilitiesIncluded = $utilitiesIncluded;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -249,34 +186,14 @@ class Property
         $this->description = $description;
     }
 
-    public function getArea(): ?float
+    public function getPropertyParams(): ?PropertyParams
     {
-        return $this->area;
+        return $this->propertyParams;
     }
 
-    public function setArea(float $area): void
+    public function setPropertyParams(PropertyParams $propertyParams): void
     {
-        $this->area = $area;
-    }
-
-    public function getLivingSpace(): ?float
-    {
-        return $this->livingSpace;
-    }
-
-    public function setLivingSpace(float $livingSpace): void
-    {
-        $this->livingSpace = $livingSpace;
-    }
-
-    public function getKitchenSpace(): ?float
-    {
-        return $this->kitchenSpace;
-    }
-
-    public function setKitchenSpace(float $kitchenSpace): void
-    {
-        $this->kitchenSpace = $kitchenSpace;
+        $this->propertyParams = $propertyParams;
     }
 
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+namespace App\Entity\Realty;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Annotation\Groups;
-
-namespace App\Entity\Realty;
 
 /**
  * @ORM\Entity
@@ -195,6 +195,45 @@ class PropertyParams
      */
     private $buildingType;
 
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $area;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $livingSpace;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $kitchenSpace;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("rent-pledge")
+     */
+    private $rentPledge;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     * @SerializedName("utilities-included")
+     */
+    private $utilitiesIncluded;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $buildYear;
 
     public function getId(): ?int
     {
@@ -271,7 +310,7 @@ class PropertyParams
         $this->floorsTotal = $floorsTotal;
     }
 
-    public function isPhone(): ?bool
+    public function getPhone(): ?bool
     {
         return $this->phone;
     }
@@ -429,6 +468,66 @@ class PropertyParams
     public function setBuildingType(string $buildingType): void
     {
         $this->buildingType = $buildingType;
+    }
+
+    public function getArea(): ?float
+    {
+        return $this->area;
+    }
+
+    public function setArea(float $area): void
+    {
+        $this->area = $area;
+    }
+
+    public function getLivingSpace(): ?float
+    {
+        return $this->livingSpace;
+    }
+
+    public function setLivingSpace(float $livingSpace): void
+    {
+        $this->livingSpace = $livingSpace;
+    }
+
+    public function getKitchenSpace(): ?float
+    {
+        return $this->kitchenSpace;
+    }
+
+    public function setKitchenSpace(float $kitchenSpace): void
+    {
+        $this->kitchenSpace = $kitchenSpace;
+    }
+
+    public function getRentPledge(): ?bool
+    {
+        return $this->rentPledge;
+    }
+
+    public function setRentPledge(bool $rentPledge): void
+    {
+        $this->rentPledge = $rentPledge;
+    }
+
+    public function getUtilitiesIncluded(): ?bool
+    {
+        return $this->utilitiesIncluded;
+    }
+
+    public function setUtilitiesIncluded(bool $utilitiesIncluded): void
+    {
+        $this->utilitiesIncluded = $utilitiesIncluded;
+    }
+
+    public function getBuildYear(): ?int
+    {
+        return $this->buildYear;
+    }
+
+    public function setBuildYear(int $buildYear): void
+    {
+        $this->buildYear = $buildYear;
     }
 
 }

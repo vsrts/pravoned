@@ -7,6 +7,7 @@ namespace App\Realty\Service;
 use App\Entity\Realty\Agent;
 use App\Entity\Realty\Category;
 use App\Entity\Realty\Property;
+use App\Entity\Realty\PropertyParams;
 use App\Entity\Realty\PropertyType;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
@@ -52,22 +53,27 @@ class ImportHomeCrmData
             $category = $this->getTargetObject($data['category'], Category::class, 'categoryName');
             $agent = $this->getDenormalizedObject($data['sales-agent'], Agent::class, 'name', $data['sales-agent']['name']);
 
+            $propertyParamsContext = ['groups' => ['property_params']];
+            $propertyParamsSearchData = ($realty->getPropertyParams()) ? $realty->getPropertyParams()->getId() : null;
+            $propertyParams = $this->getDenormalizedObject($data, PropertyParams::class, 'id', $propertyParamsSearchData, $propertyParamsContext);
+
             $realty->setType($type);
             $realty->setPropertyType($propertyType);
             $realty->setCategory($category);
             $realty->setAgent($agent);
+            $realty->setPropertyParams($propertyParams);
 
             if(array_key_exists('built-year', $data)){
-                $realty->setBuildYear((int)$data['built-year']['0']);
+                $realty->getPropertyParams()->setBuildYear((int)$data['built-year']['0']);
             }
             if(array_key_exists('area', $data)){
-               $realty->setArea((float)$data['area']['value']);
+               $realty->getPropertyParams()->setArea((float)$data['area']['value']);
             }
             if(array_key_exists('living-space', $data)){
-                $realty->setLivingSpace((float)$data['living-space']['value']);
+                $realty->getPropertyParams()->setLivingSpace((float)$data['living-space']['value']);
             }
             if(array_key_exists('kitchen-space', $data)){
-                $realty->setKitchenSpace((float)$data['kitchen-space']['value']);
+                $realty->getPropertyParams()->setKitchenSpace((float)$data['kitchen-space']['value']);
             }
 
             $this->em->persist($realty);
@@ -85,10 +91,14 @@ class ImportHomeCrmData
         return "ок";
     }
 
-    private function getDenormalizedObject(array $data, string $class, string $searchColumn, string $searchData, array $context = [])
+    private function getDenormalizedObject(array $data, string $class, string $searchColumn, $searchData = null, array $context = [])
     {
-        $targetObjectRepository = $this->em->getRepository($class);
-        $targetObject = $targetObjectRepository->findOneBy([$searchColumn => $searchData]);
+        if($searchData){
+            $targetObjectRepository = $this->em->getRepository($class);
+            $targetObject = $targetObjectRepository->findOneBy([$searchColumn => $searchData]);
+        }else{
+            $targetObject = null;
+        }
 
         $defaultContext = [ObjectNormalizer::DISABLE_TYPE_ENFORCEMENT => true];
         $context = array_merge($defaultContext, $context);
