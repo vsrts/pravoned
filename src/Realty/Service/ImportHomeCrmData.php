@@ -45,6 +45,8 @@ class ImportHomeCrmData
 
         foreach($arrayData['offer'] as $data){
 
+            $data = $this->getBooleanFromString($data);
+
             $propertyContext = ['groups' => ['import_denormalize']];
             $realty = $this->getDenormalizedObject($data, Property::class, 'code', $data['@internal-id'], $propertyContext);
 
@@ -129,6 +131,41 @@ class ImportHomeCrmData
         }
 
         return $targetObject;
+    }
+
+    private function getBooleanFromString(array $data)
+    {
+        $dataKeys = [
+            'rent-pledge',
+            'utilities-included',
+            'new-flat',
+            'phone',
+            'internet',
+            'room-furniture',
+            'rubbish-chute',
+            'with-children',
+            'with-pets',
+            'refrigerator',
+            'washing-machine',
+            'dishwasher',
+            'television',
+            'air-conditioner',
+            'shower',
+            'parking',
+        ];
+        $booleanValues = [
+          'true' => true,
+          'да' => true,
+          'false' => false,
+          'нет' => false,
+        ];
+        foreach($dataKeys as $key){
+            if(array_key_exists($key, $data)){
+                $data[$key] = $booleanValues[$data[$key]];
+            }
+        }
+
+        return $data;
     }
 
 }
