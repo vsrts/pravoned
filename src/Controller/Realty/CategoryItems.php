@@ -10,10 +10,11 @@ use App\Entity\Realty\Category;
 use App\Entity\Realty\Property;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategoryItems
+class CategoryItems extends AbstractController
 {
     /**
      * @var EntityManagerInterface
@@ -36,6 +37,7 @@ class CategoryItems
 
         $propertyObjectList = $propertyRepository->findBy(['type' => $typeObject, 'category' => $category]);
 
-        return new Response('ok');
+        return $this->render('realty/category_items_list.html.twig', ['content' => $propertyObjectList]);
+
     }
 }
