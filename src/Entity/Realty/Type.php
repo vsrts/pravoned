@@ -27,6 +27,12 @@ class Type
      */
     private $typeName;
 
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    private $alias;
+
     public function __construct($typeName = null)
     {
         $this->typeName = $typeName;
@@ -40,6 +46,16 @@ class Type
     public function getTypeName(): string
     {
         return $this->typeName;
+    }
+
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+    public function setAlias(string $alias): void
+    {
+        $this->alias = $alias;
     }
 
 }

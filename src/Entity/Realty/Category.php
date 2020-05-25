@@ -27,6 +27,12 @@ class Category
      */
     private $categoryName;
 
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    private $alias;
+
     public function __construct(string $categoryName = null)
     {
         $this->categoryName = $categoryName;
@@ -40,6 +46,16 @@ class Category
     public function getCategoryName(): string
     {
         return $this->categoryName;
+    }
+
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+    public function setAlias(string $alias): void
+    {
+        $this->alias = $alias;
     }
 
 }

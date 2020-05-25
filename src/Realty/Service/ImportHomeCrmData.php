@@ -85,12 +85,12 @@ class ImportHomeCrmData
         $this->em->flush();
 
 
-        echo "<pre>";
-        print_r($arrayData);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($arrayData);
+//        echo "</pre>";
 
 
-        return "ок";
+        return "import success";
     }
 
     private function getDenormalizedObject(array $data, string $class, string $searchColumn, $searchData = null, array $context = [])
