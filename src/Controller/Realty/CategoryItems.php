@@ -37,7 +37,6 @@ class CategoryItems extends AbstractController
 
         $propertyObjectList = $propertyRepository->findBy(['type' => $typeObject, 'category' => $category]);
 
-        return $this->render('realty/category_items_list.html.twig', ['content' => $propertyObjectList]);
-
+        return $this->render('realty/category_items_list.html.twig', ['properties' => $propertyObjectList]);
     }
 }
