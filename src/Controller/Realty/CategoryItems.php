@@ -11,7 +11,6 @@ use App\Entity\Realty\Property;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryItems extends AbstractController
