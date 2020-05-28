@@ -10,7 +10,7 @@
         "easycorp/easyadmin-bundle": "^2.3",
         "knplabs/knp-menu-bundle": "^3.0",
         "sensio/framework-extra-bundle": "^5.5",
-        "symfony/asset": "*",
+        "symfony/asset": "5.0.*",
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/expression-language": "*",
@@ -32,7 +32,8 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "twbs/bootstrap": "4.5.0"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
