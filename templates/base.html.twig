@@ -11,11 +11,14 @@
         {% endblock %}
     </head>
     <body>
+    {{ knp_menu_render('main', {'template': 'main_knp_menu.html.twig'}) }}
+    <main role="main">
+        <div class="container">
         {% block body %}
-            <div id="content">
                 {% block content %}{% endblock %}
-            </div>
         {% endblock %}
+        </div>
+    </main>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
