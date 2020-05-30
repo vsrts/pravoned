@@ -11,7 +11,34 @@
         {% endblock %}
     </head>
     <body>
-    {{ knp_menu_render('main', {'template': 'main_knp_menu.html.twig'}) }}
+    <div class="top-line">
+        <div class="container">
+            <div class="top-menu">
+                {{ knp_menu_render('top') }}
+            </div>
+            <div class="top-work-time">
+                {{ company.workTime }}
+            </div>
+            <div class="top-address">
+                {{ company.address }}
+            </div>
+        </div>
+    </div>
+    <header role="banner">
+        <div class="container">
+            <div class="left-header-block">
+                <div class="logo">
+                    <a href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="Правонед" /></a>
+                </div>
+                <div class="main-menu">
+                    {{ knp_menu_render('main', {'template': 'main_knp_menu.html.twig'}) }}
+                </div>
+            </div>
+            <div class="header-contact">
+                <div class="header-phone">{{ company.phone }}</div>
+            </div>
+        </div>
+    </header>
     <main role="main">
         <div class="container">
         {% block body %}
@@ -19,6 +46,9 @@
         {% endblock %}
         </div>
     </main>
+    <footer>
+
+    </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

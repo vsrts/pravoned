@@ -32,11 +32,24 @@ class MenuBuilder
     public function createMainMenu()
     {
         $menu = $this->factory->createItem('root');
-        $menu->addChild('Home', [
-            'uri' => '/'
-        ]);
 
         $this->upItemFromType($menu);
+
+        $menu->addChild('Новостройки', ['uri' => '#']);
+        $menu->addChild('Ипотека', ['uri' => '#']);
+
+        return $menu;
+    }
+
+    public function createTopMenu(){
+        $menu = $this->factory->createItem('top');
+        $menu->addChild('Главная', ['route' => 'homepage']);
+        $menu->addChild('Услуги', ['uri' => '#']);
+        $menu->addChild('Агенты', ['uri' => '#']);
+        $menu->addChild('Партнёры', ['uri' => '#']);
+        $menu->addChild('Отзывы', ['uri' => '#']);
+        $menu->addChild('Новости', ['uri' => '#']);
+        $menu->addChild('Контакты', ['uri' => '#']);
 
         return $menu;
     }
@@ -46,7 +59,8 @@ class MenuBuilder
         $types = $typeRepository->findAll();
 
         foreach ($types as $type){
-            $upMenuItem = $menu->addChild($type->getTypeName());
+            $typeName = mb_convert_case($type->getTypeName(), MB_CASE_TITLE, "UTF-8");
+            $upMenuItem = $menu->addChild($typeName);
             $this->childItemFromCategory($upMenuItem, $type->getAlias());
         }
     }
@@ -56,7 +70,8 @@ class MenuBuilder
         $categoryRepository = $this->em->getRepository(Category::class);
         $categories = $categoryRepository->findAll();
         foreach($categories as $category){
-            $upMenuItem->addChild($category->getCategoryName(), [
+            $categoryName = mb_convert_case($category->getCategoryName(), MB_CASE_TITLE, "UTF-8");
+            $upMenuItem->addChild($categoryName, [
                'route' => 'category_items',
                 'routeParameters' => [
                     'type' => $typeAlias,

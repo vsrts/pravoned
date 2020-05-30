@@ -85,9 +85,9 @@ class ImportHomeCrmData
         $this->em->flush();
 
 
-//        echo "<pre>";
-//        print_r($arrayData);
-//        echo "</pre>";
+        echo "<pre>";
+        print_r($arrayData);
+        echo "</pre>";
 
 
         return "import success";
