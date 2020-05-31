@@ -1,14 +1,31 @@
 body{
     background-color: #fcfcfc;
+    font-family: 'PT Sans', sans-serif;
+}
+a:hover{
+    color: #027dc3;
+    transition: all ease 0.3s;
 }
 /*top-line*/
 .top-line {
     padding: 10px;
+    line-height: 1.3;
+    box-shadow: inset 0px -1px 2px #e6e6e6;
 }
 .top-line .container{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.top-work-time {
+    font-size: 12px;
+}
+.top-address {
+    font-size: 12px;
+    max-width: 205px;
+}
+.top-menu {
+    font-size: 14px;
 }
 /*header*/
 header {
@@ -38,6 +55,9 @@ header .container{
     list-style: none;
     padding: 0;
 }
+.main-menu .menu_level_1{
+    padding: 5px 10px;
+}
 .main-menu li, .top-menu li{
     padding: 0 10px;
     color: #0b2e13;
@@ -50,6 +70,10 @@ header .container{
 .menu_level_1{
     display: none;
     position: absolute;
+    border: 1px solid #0c8fda;
+    background: #fff;
+    border-radius: 0px 2px 2px 2px;
+    box-shadow: 3px 3px 4px #ccc;
 }
 .main-menu ul>li:hover>.menu_level_1{
     display: block;
@@ -57,4 +81,14 @@ header .container{
 .main-menu a, .main-menu span, .top-menu a {
     color: #0b2e13;
     text-decoration: none;
+    cursor: pointer;
+}
+.main-menu a:hover {
+    border-bottom: 1px solid #027dc3;
+}
+.main-menu span:hover {
+    border-bottom: 2px solid #027dc3;
+}
+.main-menu a:hover, .main-menu span:hover, .top-menu a:hover {
+    color: #027dc3;
 }
