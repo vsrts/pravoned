@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace App\Entity\Realty;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -29,6 +30,7 @@ class Type
 
     /**
      * @var string
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(nullable=true)
      */
     private $alias;
