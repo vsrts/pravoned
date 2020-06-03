@@ -30,7 +30,7 @@ class Type
 
     /**
      * @var string
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"typeName"})
      * @ORM\Column(nullable=true)
      */
     private $alias;

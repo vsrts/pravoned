@@ -30,7 +30,7 @@ class Category
 
     /**
      * @var string
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"categoryName"})
      * @ORM\Column(nullable=true)
      */
     private $alias;
