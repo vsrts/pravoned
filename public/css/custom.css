@@ -27,12 +27,27 @@ a:hover{
 .top-menu {
     font-size: 14px;
 }
+.top-address {
+    font-size: 12px;
+    max-width: 223px;
+    background: url(/images/icons/geo-alt.svg) no-repeat;
+    padding-left: 27px;
+    background-size: 20px;
+    background-position: 0 7px;
+}
+.top-work-time {
+    background: url(/images/icons/calendar3.svg) no-repeat;
+    background-size: 15px;
+    padding-left: 20px;
+}
+
 /*header*/
 header {
     padding: 10px;
     border-bottom: 1px solid #d6d6d6;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,.1);
     background: #fff;
+    position: relative;
 }
 header .container{
     display: flex;
@@ -49,6 +64,15 @@ header .container{
     display: flex;
     align-items: center;
 }
+.header-phone {
+    font-weight: 400;
+    font-size: 24px;
+    background: url(/images/icons/phone.svg) no-repeat;
+    padding-left: 26px;
+    background-size: 19px;
+    line-height: 100%;
+    background-position: 0px 2px;
+}
 
 /*menu*/
 .main-menu ul, .top-menu ul{
@@ -56,7 +80,7 @@ header .container{
     padding: 0;
 }
 .main-menu .menu_level_1{
-    padding: 5px 10px;
+    padding: 0;
 }
 .main-menu li, .top-menu li{
     padding: 0 10px;
@@ -75,6 +99,24 @@ header .container{
     border-radius: 0px 2px 2px 2px;
     box-shadow: 3px 3px 4px #ccc;
 }
+.menu_level_1 li {
+    border-bottom: 1px solid #00a6e4;
+    padding: 5px 25px;
+    cursor: pointer;
+}
+.menu_level_1 li:hover {
+    background: #00a6e4;
+    transition: all ease 0.3s;
+}
+.menu_level_1 li:hover a{
+    color: #fff;
+}
+.menu_level_1 .last {
+    border: none;
+}
+.menu_level_1 li a:hover{
+    border: none;
+}
 .main-menu ul>li:hover>.menu_level_1{
     display: block;
 }
@@ -92,3 +134,11 @@ header .container{
 .main-menu a:hover, .main-menu span:hover, .top-menu a:hover {
     color: #027dc3;
 }
+
+/*home page*/
+.banner{
+    height: 500px;
+    background: url('/images/banners/3.jpg');
+    background-position: center;
+}
+
