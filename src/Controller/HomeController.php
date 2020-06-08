@@ -6,12 +6,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Company;
+use App\Entity\Realty\Agent;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class MainController extends AbstractController
+class HomeController extends AbstractController
 {
     const COMPANY_ID = 1;
     /**
@@ -31,6 +32,9 @@ class MainController extends AbstractController
         $companyRepository = $this->em->getRepository(Company::class);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
-        return $this->render('home.html.twig',['company' => $companyObject]);
+        $agentsRepository = $this->em->getRepository(Agent::class);
+        $agentsObject = $agentsRepository->findAll();
+
+        return $this->render('home.html.twig',['company' => $companyObject, 'agents' => $agentsObject]);
     }
 }

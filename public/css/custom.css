@@ -2,9 +2,15 @@ body{
     background-color: #fcfcfc;
     font-family: 'PT Sans', sans-serif;
 }
+a{
+    color: #027dc3;
+}
 a:hover{
     color: #027dc3;
-    transition: all ease 0.3s;
+    transition: all ease 0.5s;
+}
+.container{
+    max-width: 1300px;
 }
 /*top-line*/
 .top-line {
@@ -140,5 +146,143 @@ header .container{
     height: 500px;
     background: url('/images/banners/3.jpg');
     background-position: center;
+    display: flex;
+    align-items: center;
 }
-
+.banner img{
+    margin: 0 auto;
+}
+.first-home-block {
+    display: flex;
+}
+.catalog-block {
+    width: 100%;
+}
+.news-block {
+    max-width: 350px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 2px;
+    margin: 5px;
+    border-top: 6px solid #0290de;
+    position: relative;
+}
+.news-block h3 {
+    font-size: 22px;
+}
+.news-block-more {
+    display: block;
+    background: #0290de;
+    color: #fff;
+    padding: 1px 20px 3px;
+    border-radius: 50px;
+    position: absolute;
+    right: 0;
+}
+.news-block-more:hover{
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all ease 0.3s;
+}
+.row-catalog-block {
+    display: flex;
+    justify-content: space-between;
+}
+.item-catalog-block {
+    background: #fff;
+    width: 50%;
+    padding: 20px 10px;
+    margin: 5px 5px;
+    display: flex;
+}
+.img-item {
+    width: 250px;
+    height: 200px;
+    background: #00a6e4;
+    margin: -20px 20px -20px -10px;
+}
+.info-catalog-item h2 {
+    font-size: 22px;
+}
+.info-catalog-item ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.info-catalog-item a:hover{
+    text-decoration: none;
+    border-bottom: 1px solid #b6d9e8;
+ }
+.h1-home{
+    font-size: 32px;
+    margin: 40px 0;
+    padding: 0 10px 5px;
+    border-bottom: 2px solid #e3ebf1;
+}
+.commerce-block{
+    position: relative;
+}
+.commerce-block a{
+    position: absolute;
+    /* margin: 0 auto; */
+    display: block;
+    left: 20px;
+    background: #0290de;
+    color: #fff;
+    padding: 1px 20px 3px;
+    border-radius: 50px;
+}
+.commerce-block a:hover{
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all ease 0.3s;
+}
+.h2-home {
+    font-size: 32px;
+    margin: 40px 0;
+    padding: 0 10px 5px;
+    border-bottom: 2px solid #e3ebf1;
+}
+.home-agents-block {
+    margin-top: 80px;
+}
+.agents-home-list {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.agent-home-icon {
+    width: 60px;
+}
+.agents-home-item p{
+    margin: 0;
+}
+.agents-home-item .agent-home-name {
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.agent-home-phone {
+    border-bottom: 2px solid #0290de;
+    padding-bottom: 4px;
+}
+.agent-home-email {
+    font-style: italic;
+}
+.agent-home-email:hover{
+    text-decoration: none;
+    border-bottom: 1px solid #b6d9e8;
+}
+.home-company-info {
+    margin-top: 80px;
+}
+.home-company-info p{
+    font-size: 13px;
+    margin: 0 0 10px;
+}
+/*footer*/
+footer {
+    height: 300px;
+    margin-top: 50px;
+    background: #378ed0;
+}

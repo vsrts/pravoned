@@ -2,9 +2,80 @@
 
 {% block content %}
     <div class="banner">
-
+        <img src="{{ asset('images/search.png') }}" />
     </div>
     <div class="container">
-        <h1>Главная</h1>
+        <h1 class="h1-home">Поиск квартир в г. Новый Уренгой</h1>
+        <div class="first-home-block">
+            <div class="catalog-block">
+                <div class="row-catalog-block">
+                    <div class="item-catalog-block">
+                        <div class="img-item"><img src="{{ asset('images/categories/pokupka-cat.jpg') }}" alt="Покупка квартиры" /></div>
+                        <div class="info-catalog-item">
+                            <h2>Купить квартиру</h2>
+                            <ul>
+                                <li><a href="#">Студию</a></li>
+                                <li><a href="#">1-комнатную</a></li>
+                                <li><a href="#">2-комнатную</a></li>
+                                <li><a href="#">3-комнатную и более</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-catalog-block">
+                        <div class="img-item"><img src="{{ asset('images/categories/arenda-cat.jpg') }}" alt="Аренда квартиры" /></div>
+                        <div class="info-catalog-item">
+                            <h2>Снять квартиру</h2>
+                            <ul>
+                                <li><a href="#">Студию</a></li>
+                                <li><a href="#">1-комнатную</a></li>
+                                <li><a href="#">2-комнатную</a></li>
+                                <li><a href="#">3-комнатную и более</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-catalog-block">
+                    <div class="item-catalog-block">
+                        <div class="img-item"><img src="{{ asset('images/categories/dacha-cat.jpg') }}" alt="Покупка дачи" /></div>
+                        <div class="info-catalog-item">
+                            <ul>
+                                <li><a href="#">Дома, дачи, коттеджи</a></li>
+                                <li><a href="#">Гаражи</a></li>
+                                <li><a href="#">Земельные участки</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-catalog-block commerce-block">
+                        <div class="img-item"> <img src="{{ asset('images/categories/buisnes-cat.jpg') }}" alt="Покупка и аренда коммерческой недвижимости" /> </div>
+                        <a href="#">Коммерческая недвижимость</a>
+                </div>
+            </div>
+        </div>
+            <div class="news-block">
+                <h3>Квартиры в новостройках Санкт-Петербурга. Переезжаем в Питер!</h3>
+                <p>АН "Правовая недвижимость", являясь официальным представителем застройщика "Ленстройтрест" в г. Санкт-Петербург, предлагает по ценам от застройщика квартиры в г. С-Петербург в ЖК "IQ Гатчина", ЖК "Jaanila country" (Янила кантри), ЖК...</p>
+                <div class="news-block-more">Подробнее</div>
+            </div>
+        </div>
+
+        <div class="home-agents-block">
+            <h2 class="h2-home">Наши агенты</h2>
+            <div class="agents-home-list">
+                {% for agent in agents %}
+                    <div class="agents-home-item">
+                        <img class="agent-home-icon" src="{{ asset('images/icons/person-circle.svg') }}" />
+                        <p class="agent-home-name">{{ agent.name }}</p>
+                        <p class="agent-home-phone">{{ agent.phone }}</p>
+                        <a class="agent-home-email" href="mailto:{{ agent.email }}">{{ agent.email }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="home-company-info">
+            <h2 class="h2-home">О компании</h2>
+            {{ company.info | raw }}
+        </div>
+
     </div>
 {% endblock %}

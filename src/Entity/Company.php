@@ -51,6 +51,12 @@ class Company
      */
     private $workTime;
 
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $info;
+
 
     public function getId(): ?int
     {
@@ -106,5 +112,17 @@ class Company
     {
         $this->workTime = $workTime;
     }
+
+    public function getInfo(): ?string
+    {
+        return $this->info;
+    }
+
+    public function setInfo(string $info): void
+    {
+        $this->info = $info;
+    }
+
+
 
 }
