@@ -46,11 +46,32 @@
         {% endblock %}
     </main>
     <footer>
+        <div class="container">
+            <div class="foot-more-menu">
+                {{ knp_menu_render('top') }}
+            </div>
+            <div class="foot-company-info">
+                <h3>Контакты</h3>
+                <div class="foot-address">{{ company.address }}</div>
+                <div class="foot-phone">{{ company.phone }}</div>
+                <div class="foot-work-email">{{ company.email }}</div>
+                <div class="foot-work-time">{{ company.workTime }}</div>
+            </div>
+            <div class="foot-other-platform">
+                <h3>«Правовая недвижимость» на других площадках</h3>
+                <div class="foot-platform-list">
+                    <a href="#"><img src="{{ asset('images/icons/vk.png') }}" /></a>
+                    <a href="#"><img src="{{ asset('images/icons/insta.png') }}" /></a>
+                    <a href="#"><img src="{{ asset('images/icons/avito.png') }}" /></a>
+                    <a href="#"><img src="{{ asset('images/icons/yandex.png') }}" /></a>
+                </div>
 
+                <span class="developer">
+					<a href="https://vsproger.ru" title="Разработчик сайта" target="_blank">Разработчик сайта</a> - <img src="{{ asset('images/vs.png') }}" alt="VS">
+				</span>
+
+            </div>
     </footer>
-    <div class="container">
-
-    </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

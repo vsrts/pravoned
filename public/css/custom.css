@@ -282,7 +282,90 @@ header .container{
 }
 /*footer*/
 footer {
-    height: 300px;
     margin-top: 50px;
-    background: #378ed0;
+    background: linear-gradient(to right, #00a6e4, #63b7ff, #00a6e4);
+    color: #fffafd;
+    padding: 20px 0;
+}
+footer .container{
+    display: flex;
+    justify-content: space-between;
+}
+footer h3{
+    font-size: 22px;
+    color: #e3ebf1;
+    border-bottom: 2px solid #75c2ff;
+}
+.foot-more-menu ul{
+    list-style: none;
+    padding: 0;
+}
+.foot-more-menu li{
+    padding: 0 10px;
+    position: relative;
+}
+.foot-more-menu>ul{
+    margin: 0;
+}
+.foot-more-menu a {
+    color: #fffafd;
+    text-decoration: none;
+    cursor: pointer;
+}
+.foot-more-menu a:hover {
+    color: #70cef9;
+}
+.foot-platform-list {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.foot-platform-list img {
+    height: 35px;
+}
+.foot-platform-list a:hover{
+    opacity: 0.7;
+    transition: all ease 0.3s;
+}
+.foot-company-info div{
+    margin: 10px 0;
+}
+.foot-address {
+    background: url(/images/icons/foot-geo-alt.svg) no-repeat;
+    padding-left: 25px;
+    background-position: 0 5px;
+}
+.foot-work-time {
+    background: url(/images/icons/foot-calendar3.svg) no-repeat;
+    padding-left: 25px;
+    background-position: 0px 3px;
+}
+.foot-phone {
+    background: url(/images/icons/foot-phone.svg) no-repeat;
+    padding-left: 25px;
+    background-position: 0px 4px;
+}
+.foot-work-email {
+    background: url(/images/icons/foot-envelope.svg) no-repeat;
+    padding-left: 25px;
+    background-position: 0px 5px;
+}
+.developer{
+    float: right;
+    padding-top: 14px;
+}
+.developer a{
+    color: #fff;
+    border-bottom: 1px dashed;
+    text-decoration: none;
+    vertical-align: top;
+}
+.developer a:hover{
+    color: #fdd9d9;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+.developer img{
+    margin-left: -27px;
+    margin-top: 3px;
 }
