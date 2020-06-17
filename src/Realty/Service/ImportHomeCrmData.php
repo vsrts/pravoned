@@ -80,6 +80,9 @@ class ImportHomeCrmData
 
             $this->em->persist($realty);
 
+            $imageList = (array_key_exists('image', $data)) ? $data['image'] : null;
+            $this->saveImages($data['@internal-id'], $imageList);
+
         }
 
         $this->em->flush();
@@ -166,6 +169,14 @@ class ImportHomeCrmData
         }
 
         return $data;
+    }
+
+    private function saveImages(string $propertyCode, array $imagesArray = null){
+
+        if($imagesArray){
+            //TODO создание директории с именем кода объекта, создание директории thumb, сохранение картинок, обновление картинок, удаление картинок на основе imageArray
+        }
+
     }
 
 }
