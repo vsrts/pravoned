@@ -11,6 +11,7 @@ use App\Entity\Realty\PropertyParams;
 use App\Entity\Realty\PropertyType;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -20,6 +21,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class ImportHomeCrmData
 {
     const HOME_CRM_DATA_XML = 'https://homecrm.ru/unloadings/152/1/xml/yandex/yandex.xml';
+    const GALLERY_DESTINATION = 'images/realty-gallery/';
 
     /**
      * @var SerializerInterface
@@ -78,10 +80,11 @@ class ImportHomeCrmData
                 $realty->getPropertyParams()->setKitchenSpace((float)$data['kitchen-space']['value']);
             }
 
-            $this->em->persist($realty);
-
             $imageList = (array_key_exists('image', $data)) ? $data['image'] : null;
-            $this->saveImages($data['@internal-id'], $imageList);
+            $mainImage = $this->saveImages($data['@internal-id'], $imageList);
+            $realty->setMainImage($mainImage);
+
+            $this->em->persist($realty);
 
         }
 
@@ -171,11 +174,43 @@ class ImportHomeCrmData
         return $data;
     }
 
-    private function saveImages(string $propertyCode, array $imagesArray = null){
+    private function saveImages(string $propertyCode, array $imagesArray = null): ?string
+    {
 
         if($imagesArray){
-            //TODO создание директории с именем кода объекта, создание директории thumb, сохранение картинок, обновление картинок, удаление картинок на основе imageArray
+            $structure = self::GALLERY_DESTINATION . $propertyCode;
+            if(!file_exists($structure)){
+                mkdir($structure, 0777, true);
+            }
+
+            if(file_exists($structure)){
+                $imageCount = 1;
+                $uploadedImages = [];
+                foreach($imagesArray as $image){
+                    $filename = basename($image);
+                    $localImage = $structure . '/' . $filename;
+                    copy($image, $localImage);
+                    if($imageCount === 1){
+                        $mainImage = $localImage;
+                    }
+                    $uploadedImages[] = $filename;
+                    $imageCount++;
+                }
+
+                //Удаляем изображения которых нет во входящем списке
+                $localImagesList = array_diff(scandir($structure), ['..', '.']);
+                $diffImages = array_diff($localImagesList, $uploadedImages);
+                foreach($diffImages as $unlinkImage){
+                    unlink($structure . '/' . $unlinkImage);
+                }
+
+                return $mainImage;
+
+            }
+
         }
+
+        return null;
 
     }
 

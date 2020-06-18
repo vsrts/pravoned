@@ -90,6 +90,11 @@ class Property
      */
     private $propertyParams;
 
+    /**
+     * @var string
+     * @ORM\Column(nullable=true)
+     */
+    private $mainImage;
 
     public function getId(): int
     {
@@ -195,5 +200,17 @@ class Property
     {
         $this->propertyParams = $propertyParams;
     }
+
+    public function getMainImage(): ?string
+    {
+        return $this->mainImage;
+    }
+
+    public function setMainImage(?string $mainImage): void
+    {
+        $this->mainImage = $mainImage;
+    }
+
+
 
 }
