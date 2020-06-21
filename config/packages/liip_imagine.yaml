@@ -1,0 +1,32 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+#TODO Не генерируются кэш изображения, надо смотреть настройки сервера, https://github.com/liip/LiipImagineBundle/issues/1260
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: 'imagick'
+
+    # configure resolvers
+    resolvers:
+
+        # setup the default resolver
+        default:
+
+            # use the default web path
+            web_path:
+                web_root: '%kernel.project_dir%/public'
+                cache_prefix: 'media'
+
+    loaders:
+        default:
+            filesystem:
+                data_root: "%kernel.project_dir%/public"
+
+    filter_sets:
+
+        my_thumb:
+            quality: 100
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [120, 90], mode: outbound }
+
+
