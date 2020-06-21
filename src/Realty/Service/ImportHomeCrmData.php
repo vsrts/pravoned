@@ -11,6 +11,7 @@ use App\Entity\Realty\PropertyParams;
 use App\Entity\Realty\PropertyType;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
+use Gumlet\ImageResize;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -180,7 +181,7 @@ class ImportHomeCrmData
         if($imagesArray){
             $structure = self::GALLERY_DESTINATION . $propertyCode;
             if(!file_exists($structure)){
-                mkdir($structure, 0777, true);
+                mkdir($structure . '/thumb', 0777, true);
             }
 
             if(file_exists($structure)){
@@ -191,14 +192,19 @@ class ImportHomeCrmData
                     $localImage = $structure . '/' . $filename;
                     copy($image, $localImage);
                     if($imageCount === 1){
-                        $mainImage = $localImage;
+                        $mainImage = $structure . '/thumb/' . $filename;
+                        if(!file_exists($mainImage)){
+                            $image = new ImageResize($localImage);
+                            $image->crop(200, 200);
+                            $image->save($mainImage);
+                        }
                     }
                     $uploadedImages[] = $filename;
                     $imageCount++;
                 }
 
                 //Удаляем изображения которых нет во входящем списке
-                $localImagesList = array_diff(scandir($structure), ['..', '.']);
+                $localImagesList = array_diff(scandir($structure), ['..', '.', 'thumb']);
                 $diffImages = array_diff($localImagesList, $uploadedImages);
                 foreach($diffImages as $unlinkImage){
                     unlink($structure . '/' . $unlinkImage);

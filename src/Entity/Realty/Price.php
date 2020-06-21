@@ -53,7 +53,7 @@ class Price
         $this->priceValue = $priceValue;
     }
 
-    public function getPeriod(): string
+    public function getPeriod(): ?string
     {
         return $this->period;
     }

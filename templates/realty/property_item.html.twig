@@ -2,10 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <h1>Список объектов</h1>
+        <h1>Объект</h1>
 
-        <div class="category-items">
-            {% for property in properties %}
+        <div class="property-item">
                 <div class="category-item">
                     <div class="image-category-item">
                         {% if property.mainImage is null %}
@@ -19,14 +18,14 @@
                             <div class="code-category-item">
                                 #{{ property.code }}
                             </div>
-                            <a href="{{ asset(''~property.category.alias~'/'~property.code) }}">
+                            <a href="#">
                                 <h2>
                                     <span>
                                     {% if property.propertyParams.rooms %}
                                         {{ property.propertyParams.rooms }} комн.
                                         {% set delimeter %},{% endset %}
                                     {% endif %}
-                                    {{ property.category.categoryName}}
+                                        {{ property.category.categoryName}}
                                     </span>
                                     <span>
                                         {% if property.propertyParams.floor %}
@@ -77,7 +76,6 @@
                         <div class="agent-email-category-item">{{ property.agent.email }}</div>
                     </div>
                 </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock %}

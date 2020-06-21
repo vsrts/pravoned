@@ -96,6 +96,16 @@ class Property
      */
     private $mainImage;
 
+    public function getshortDescription(): ?string
+    {
+        $shortDescription = ($this->description) ? mb_strimwidth($this->description, 0, 200, "...") : null;
+        return $shortDescription;
+    }
+
+    public function getStringCreatedAt(){
+        return $this->createdAt->format('d-m-Y');
+    }
+
     public function getId(): int
     {
         return $this->id;
