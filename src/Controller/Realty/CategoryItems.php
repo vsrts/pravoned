@@ -28,15 +28,15 @@ class CategoryItems extends AbstractController
     }
 
     /**
-     * @Route("/{type}/{alias}", name="category_items")
+     * @Route("/{alias}/{category}", name="category_items", requirements={"alias"="sale|rent"})
      */
-    public function categoryItemsList(string $type, Category $category){
+    public function categoryItemsList(Type $type, string $category){
         $propertyRepository = $this->em->getRepository(Property::class);
-        $typeRepository = $this->em->getRepository(Type::class);
+        $categoryRepository = $this->em->getRepository(Category::class);
         $companyRepository = $this->em->getRepository(Company::class);
 
-        $typeObject = $typeRepository->findOneBy(['alias' => $type]);
-        $propertyObjectList = $propertyRepository->findBy(['type' => $typeObject, 'category' => $category]);
+        $categoryObject = $categoryRepository->findOneBy(['alias' => $category]);
+        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject]);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [

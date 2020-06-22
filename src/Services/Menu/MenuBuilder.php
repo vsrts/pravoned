@@ -74,8 +74,8 @@ class MenuBuilder
             $upMenuItem->addChild($categoryName, [
                'route' => 'category_items',
                 'routeParameters' => [
-                    'type' => $typeAlias,
-                    'alias' => $category->getAlias()
+                    'alias' => $typeAlias,
+                    'category' => $category->getAlias()
                 ]
             ]);
         }

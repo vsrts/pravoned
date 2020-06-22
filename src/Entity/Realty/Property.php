@@ -221,6 +221,4 @@ class Property
         $this->mainImage = $mainImage;
     }
 
-
-
 }

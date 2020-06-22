@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PropertyItem extends AbstractController
 {
+    const COMPANY_ID = 1;
+
     /**
      * @var EntityManagerInterface
      */
@@ -28,7 +30,7 @@ class PropertyItem extends AbstractController
     /**
      * @Route("/{alias}/{code}", name="property_item")
      */
-    public function propertyItem(Category $category, Property $code){
+    public function propertyItem(Category $category, string $code){
         $propertyRepository = $this->em->getRepository(Property::class);
         $companyRepository = $this->em->getRepository(Company::class);
 
