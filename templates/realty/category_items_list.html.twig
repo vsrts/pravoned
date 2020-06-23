@@ -16,30 +16,26 @@
                     </div>
                     <div class="info-category-item">
                         <div class="head-category-item">
-                            <div class="code-category-item">
-                                #{{ property.code }}
-                            </div>
                             <a href="{{ asset(''~property.category.alias~'/'~property.code) }}">
-                                <h2>
-                                    <span>
-                                    {% if property.propertyParams.rooms %}
-                                        {{ property.propertyParams.rooms }} комн.
-                                        {% set delimeter %},{% endset %}
+                                <span>
+                                {% if property.propertyParams.rooms %}
+                                    {{ property.propertyParams.rooms }} комн.
+                                    {% set delimeter %},{% endset %}
+                                {% endif %}
+                                {{ property.category.categoryName}}
+                                </span>
+                                <span>
+                                    {% if property.propertyParams.floor %}
+                                        {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
+                                        {{ property.propertyParams.floor }}{% if property.propertyParams.floorsTotal %}/{{ property.propertyParams.floorsTotal }}{% endif %} этаж
                                     {% endif %}
-                                    {{ property.category.categoryName}}
-                                    </span>
-                                    <span>
-                                        {% if property.propertyParams.floor %}
-                                            {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
-                                            {{ property.propertyParams.floor }}{% if property.propertyParams.floorsTotal %}/{{ property.propertyParams.floorsTotal }}{% endif %} этаж
-                                        {% endif %}
-                                    </span>
-                                    <span>
-                                        {% if property.propertyParams.area %}
-                                            {{ property.propertyParams.area }} кв.м.
-                                        {% endif %}
-                                    </span>
-                                </h2>
+                                </span>
+                                <span>
+                                    {% if property.propertyParams.area %}
+                                        {{ property.propertyParams.area }} кв.м.
+                                    {% endif %}
+                                </span>
+
                             </a>
                         </div>
                         <div class="address-category-item">
@@ -58,8 +54,8 @@
                             {% endif %}
                         </div>
                         <div class="price-category-item">
-                            {{ property.price.priceValue }} руб.
-                            {% if property.price.period %}/в {{ property.price.period }}{% endif %}
+                            {{ property.price.priceValue }} <span class="currency">руб.</span>
+                            {% if property.price.period %} <span class="price-period">в {{ property.price.period }}</span>{% endif %}
                         </div>
                         <div class="description-category-item">
                             {% if property.description %}
@@ -67,14 +63,19 @@
                                 <a class="description-more" href="#">Подробнее</a>
                             {% endif %}
                         </div>
+                    </div>
+                    <div class="item-category-contacts">
+                        <div class="agent-category-item">
+                            <div class="agent-name-category-item">{{ property.agent.name }}</div>
+                            <div class="agent-phone-category-item">{{ property.agent.phone }}</div>
+                            <div class="agent-email-category-item">{{ property.agent.email }}</div>
+                        </div>
                         <div class="createdAt-category-item">
                             Добавлено {{ property.stringCreatedAt }}
                         </div>
-                    </div>
-                    <div class="agent-category-item">
-                        <div class="agent-name-category-item">{{ property.agent.name }}</div>
-                        <div class="agent-phone-category-item">{{ property.agent.phone }}</div>
-                        <div class="agent-email-category-item">{{ property.agent.email }}</div>
+                        <div class="code-category-item">
+                            #{{ property.code }}
+                        </div>
                     </div>
                 </div>
             {% endfor %}

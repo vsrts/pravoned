@@ -369,3 +369,60 @@ footer h3{
     margin-left: -27px;
     margin-top: 3px;
 }
+/*category-item-list*/
+.category-item {
+    display: flex;
+    background: #fff;
+    border-radius: 3px;
+    margin: 20px 0;
+    overflow: hidden;
+    height: 250px;
+}
+.image-category-item {
+    margin-right: 20px;
+}
+.item-category-contacts {
+    margin-left: 10px;
+}
+.agent-category-item {
+    background: #3fbceb;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    color: #fff;
+}
+.info-category-item {
+    padding: 10px 0;
+}
+.head-category-item {
+    font-size: 28px;
+}
+.head-category-item a:hover{
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all ease 0.3s;
+}
+.address-category-item {
+    font-size: 14px;
+    color: #757272;
+}
+.price-category-item {
+    display: inline-flex;
+    font-size: 24px;
+    margin: 15px 0;
+    align-items: center;
+}
+.currency {
+    font-size: 17px;
+    color: #757272;
+    margin-left: 5px;
+}
+.price-period {
+    background: #3fbceb;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 15px 3px;
+    border-radius: 50px;
+    margin-left: 10px;
+}

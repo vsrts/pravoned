@@ -195,7 +195,7 @@ class ImportHomeCrmData
                         $mainImage = $structure . '/thumb/' . $filename;
                         if(!file_exists($mainImage)){
                             $image = new ImageResize($localImage);
-                            $image->crop(200, 200);
+                            $image->crop(300, 250);
                             $image->save($mainImage);
                         }
                     }
