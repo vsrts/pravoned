@@ -2,66 +2,68 @@
 
 {% block content %}
     <div class="container">
-        <h1>Список объектов</h1>
+        <h1 class="page-head">Список объектов</h1>
 
         <div class="category-items">
             {% for property in properties %}
                 <div class="category-item">
-                    <div class="image-category-item">
-                        {% if property.mainImage is null %}
-                            <img src="{{ asset('images/logo.png') }}" />
-                        {% else %}
-                            <img src="{{ asset('' ~ property.mainImage) }}" />
-                        {% endif %}
-                    </div>
-                    <div class="info-category-item">
-                        <div class="head-category-item">
-                            <a href="{{ asset(''~property.category.alias~'/'~property.code) }}">
+                    <div class="main-category-block">
+                        <div class="image-category-item">
+                            {% if property.mainImage is null %}
+                                <img src="{{ asset('images/realty-gallery/not-photo.jpg') }}" />
+                            {% else %}
+                                <img src="{{ asset('' ~ property.mainImage) }}" />
+                            {% endif %}
+                        </div>
+                        <div class="info-category-item">
+                            <div class="head-category-item">
+                                <a href="{{ asset(''~property.category.alias~'/'~property.code) }}">
                                 <span>
                                 {% if property.propertyParams.rooms %}
                                     {{ property.propertyParams.rooms }} комн.
                                     {% set delimeter %},{% endset %}
                                 {% endif %}
-                                {{ property.category.categoryName}}
+                                    {{ property.category.categoryName}}
                                 </span>
-                                <span>
+                                    <span>
                                     {% if property.propertyParams.floor %}
                                         {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
                                         {{ property.propertyParams.floor }}{% if property.propertyParams.floorsTotal %}/{{ property.propertyParams.floorsTotal }}{% endif %} этаж
                                     {% endif %}
                                 </span>
-                                <span>
+                                    <span>
                                     {% if property.propertyParams.area %}
                                         {{ property.propertyParams.area }} кв.м.
                                     {% endif %}
                                 </span>
 
-                            </a>
-                        </div>
-                        <div class="address-category-item">
-                            {% if property.location.region %}
-                                {% set delimeter %},{% endset %}
-                                {{ property.location.region }}
+                                </a>
+                            </div>
+                            <div class="address-category-item">
+                                {% if property.location.region %}
+                                    {% set delimeter %},{% endset %}
+                                    {{ property.location.region }}
 
-                            {% endif %}
-                            {% if property.location.localityName %}
-                                {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
-                                {{ property.location.localityName }}
-                            {% endif %}
-                            {% if property.location.address %}
-                                {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
-                                {{ property.location.address }}
-                            {% endif %}
-                        </div>
-                        <div class="price-category-item">
-                            {{ property.price.priceValue }} <span class="currency">руб.</span>
-                            {% if property.price.period %} <span class="price-period">в {{ property.price.period }}</span>{% endif %}
-                        </div>
-                        <div class="description-category-item">
-                            {% if property.description %}
-                                {{ property.shortDescription }}
-                                <a class="description-more" href="#">Подробнее</a>
-                            {% endif %}
+                                {% endif %}
+                                {% if property.location.localityName %}
+                                    {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
+                                    {{ property.location.localityName }}
+                                {% endif %}
+                                {% if property.location.address %}
+                                    {% if delimeter %}{{ delimeter }}{% else %}{% set delimeter %},{% endset %}{% endif %}
+                                    {{ property.location.address }}
+                                {% endif %}
+                            </div>
+                            <div class="price-category-item">
+                                {{ property.price.priceValue }} <span class="currency">руб.</span>
+                                {% if property.price.period %} <span class="price-period">в {{ property.price.period }}</span>{% endif %}
+                            </div>
+                            <div class="description-category-item">
+                                {% if property.description %}
+                                    {{ property.shortDescription }}
+                                    <a class="description-more" href="{{ asset(''~property.category.alias~'/'~property.code) }}">Подробнее</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                     <div class="item-category-contacts">
@@ -70,11 +72,13 @@
                             <div class="agent-phone-category-item">{{ property.agent.phone }}</div>
                             <div class="agent-email-category-item">{{ property.agent.email }}</div>
                         </div>
-                        <div class="createdAt-category-item">
-                            Добавлено {{ property.stringCreatedAt }}
-                        </div>
-                        <div class="code-category-item">
-                            #{{ property.code }}
+                        <div class="meta-info-category-item">
+                            <div class="code-category-item">
+                                #{{ property.code }}
+                            </div>
+                            <div class="createdAt-category-item">
+                                <span class="createdAt-title">Добавлено</span> {{ property.stringCreatedAt }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -98,7 +98,7 @@ class Property
 
     public function getshortDescription(): ?string
     {
-        $shortDescription = ($this->description) ? mb_strimwidth($this->description, 0, 200, "...") : null;
+        $shortDescription = ($this->description) ? mb_strimwidth($this->description, 0, 250, "...") : null;
         return $shortDescription;
     }
 
