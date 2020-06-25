@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PropertyItem extends AbstractController
 {
     const COMPANY_ID = 1;
+    const GALLERY_DESTINATION = 'images/realty-gallery/';
 
     /**
      * @var EntityManagerInterface
@@ -37,9 +38,14 @@ class PropertyItem extends AbstractController
         $propertyObject = $propertyRepository->findOneBy(['code' => $code]);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
+        $propertyCode = $propertyObject->getCode();
+        $structure = self::GALLERY_DESTINATION . $propertyCode;
+        $localImagesList = array_diff(scandir($structure), ['..', '.', 'thumb']);
+
         return $this->render('realty/property_item.html.twig', [
             'property' => $propertyObject,
-            'company' => $companyObject
+            'company' => $companyObject,
+            'imageGallery' => $localImagesList,
         ]);
     }
 

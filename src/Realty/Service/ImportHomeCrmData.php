@@ -12,7 +12,6 @@ use App\Entity\Realty\PropertyType;
 use App\Entity\Realty\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Gumlet\ImageResize;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -191,13 +190,14 @@ class ImportHomeCrmData
                     $filename = basename($image);
                     $localImage = $structure . '/' . $filename;
                     copy($image, $localImage);
+                    $thumbImage = $structure . '/thumb/' . $filename;
+                    if(!file_exists($thumbImage)){
+                        $image = new ImageResize($localImage);
+                        $image->crop(300, 250);
+                        $image->save($thumbImage);
+                    }
                     if($imageCount === 1){
-                        $mainImage = $structure . '/thumb/' . $filename;
-                        if(!file_exists($mainImage)){
-                            $image = new ImageResize($localImage);
-                            $image->crop(300, 250);
-                            $image->save($mainImage);
-                        }
+                        $mainImage = $thumbImage;
                     }
                     $uploadedImages[] = $filename;
                     $imageCount++;

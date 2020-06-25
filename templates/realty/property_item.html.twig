@@ -3,6 +3,9 @@
 {% block content %}
 <div class="container">
     <div class="property-item">
+        {% for image in imageGallery %}
+            {{ image }}
+        {% endfor %}
         <div class="main-info-item">
             <div class="head-item-info">
                 <div class="code-item">
