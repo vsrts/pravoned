@@ -479,3 +479,101 @@ footer h3{
     font-size: 15px;
     margin-top: 5px;
 }
+/*realty-item*/
+.property-item {
+    margin-top: 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 3px;
+}
+.head-meta-info {
+    align-content: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.code-item {
+    background: #027dc3;
+    color: #fff;
+    font-size: 16px;
+    padding: 2px 15px;
+    border-radius: 50px;
+    margin-left: 20px;
+}
+.createdAt-item {
+    font-size: 13px;
+}
+.head-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 0;
+    border-bottom: 2px solid #c8e9f5;
+}
+.iteh-h1 {
+    font-size: 30px;
+    margin: 0;
+}
+.price-item {
+    color: #027dc3;
+    font-size: 28px;
+    font-weight: 600;
+}
+.address-item {
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.action-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.image-item {
+    width: 100%;
+}
+.main-detail{
+    min-width: 300px;
+}
+.agent-item {
+    background: #3fbceb;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.agent-name-item {
+    font-weight: 600;
+}
+.agent-phone-item {
+    font-size: 18px;
+    border-bottom: 2px solid #76cff1;
+}
+.agent-email-item {
+    font-style: italic;
+    color: #e4f7ff;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.building-info{
+    font-size: 18px;
+    border-left: 30px solid #efe600;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+.new-building {
+
+}
+.house-complex {
+
+}
+.h2-item {
+    font-size: 26px;
+    border-bottom: 2px solid red;
+    border-bottom: 2px solid #c8e9f5;
+}
+.description-item {
+    margin-bottom: 40px;
+}
+.more-info-item{
+    margin-bottom: 40px;
+}
