@@ -17,6 +17,9 @@ a:hover{
     font-size: 38px;
     display: inline-block;
 }
+main {
+    min-height: 552px;
+}
 /*top-line*/
 .top-line {
     padding: 10px;
@@ -576,4 +579,37 @@ footer h3{
 }
 .more-info-item{
     margin-bottom: 40px;
+}
+.property-params-item {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+.property-params-item li {
+    background: url(/images/icons/circle.svg) no-repeat;
+    padding-left: 20px;
+    background-size: 8px;
+    background-position: 0px 9px;
+}
+.property-params-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #717171;
+}
+.property-param-init {
+    color: #a5a5a5;
+}
+.in-property-item {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.in-property-item li{
+    margin-right: 20px;
+    background: url(/images/icons/check2-circle.svg) no-repeat;
+    padding-left: 25px;
+    background-position: 0;
+    background-size: 20px;
 }
