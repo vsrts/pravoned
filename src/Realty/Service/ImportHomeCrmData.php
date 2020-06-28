@@ -44,6 +44,7 @@ class ImportHomeCrmData
         $xmlData = file_get_contents(self::HOME_CRM_DATA_XML);
         $encoder = new XmlEncoder();
         $arrayData = $encoder->decode($xmlData, 'xml');
+        $propertyFromImport = [];
 
 //        echo "<pre>";
 //        print_r($arrayData);
@@ -91,15 +92,22 @@ class ImportHomeCrmData
                 $realty->getPropertyParams()->setKitchenSpace((float)$data['kitchen-space']['value']);
             }
 
+            if(array_key_exists('image', $data) && !is_array($data['image']) ){
+                $data['image'] = [$data['image']];
+            }
             $imageList = (array_key_exists('image', $data)) ? $data['image'] : null;
             $mainImage = $this->saveImages($data['@internal-id'], $imageList);
             $realty->setMainImage($mainImage);
 
             $this->em->persist($realty);
 
+            $propertyFromImport[] = $realty->getCode();
+
         }
 
         $this->em->flush();
+
+        $this->deleteOldProperty($propertyFromImport);
 
 
         return "import success";
@@ -227,6 +235,43 @@ class ImportHomeCrmData
         }
 
         return null;
+
+    }
+
+    private function deleteOldProperty(array $propertyFromImport){
+        $propertyRepository = $this->em->getRepository(Property::class);
+        $propertyObjectsInBase = $propertyRepository->findAll();
+        $propertyInBase = [];
+        foreach($propertyObjectsInBase as $propertyObjectInBase){
+            $propertyInBase[] = $propertyObjectInBase->getCode();
+        }
+        $diffProperties = array_diff($propertyInBase, $propertyFromImport);
+        foreach($diffProperties as $oldPropertyCode){
+            $propertyOldObject = $propertyRepository->findOneBy(['code' => $oldPropertyCode]);
+            $this->em->remove($propertyOldObject);
+            $this->em->remove($propertyOldObject->getLocation());
+            $this->em->remove($propertyOldObject->getPrice());
+            $this->em->remove($propertyOldObject->getPropertyParams());
+
+            $imageStructure = self::GALLERY_DESTINATION . $oldPropertyCode;
+            if(is_dir($imageStructure)) {
+
+                $localThumbImagesList = array_diff(scandir($imageStructure . '/thumb'), ['..', '.']);
+                foreach ($localThumbImagesList as $unlinkThumbImage) {
+                    unlink($imageStructure . '/thumb/' . $unlinkThumbImage);
+                }
+                rmdir($imageStructure . '/thumb');
+
+                $localImagesList = array_diff(scandir($imageStructure), ['..', '.', 'thumb']);
+                foreach ($localImagesList as $unlinkImage) {
+                    unlink($imageStructure . '/thumb/' . $unlinkImage);
+                    unlink($imageStructure . '/' . $unlinkImage);
+                }
+
+                rmdir($imageStructure);
+            }
+        }
+        $this->em->flush();
 
     }
 
