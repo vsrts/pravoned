@@ -60,6 +60,13 @@ class PropertyParams
     private $rooms;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("property_params")
+     */
+    private $studio;
+
+    /**
      * @var int
      * @ORM\Column(type= "integer", nullable=true)
      * @Groups("property_params")
@@ -234,6 +241,12 @@ class PropertyParams
      * @ORM\Column(type="integer", nullable=true)
      */
     private $buildYear;
+
+    public function setNulls()
+    {
+        $this->rooms = null;
+        $this->studio = null;
+    }
 
     public function getId(): ?int
     {
@@ -528,6 +541,16 @@ class PropertyParams
     public function setBuildYear(int $buildYear): void
     {
         $this->buildYear = $buildYear;
+    }
+
+    public function getStudio(): ?bool
+    {
+        return $this->studio;
+    }
+
+    public function setStudio(bool $studio): void
+    {
+        $this->studio = $studio;
     }
 
 }

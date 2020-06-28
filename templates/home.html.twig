@@ -14,10 +14,10 @@
                         <div class="info-catalog-item">
                             <h2>Купить квартиру</h2>
                             <ul>
-                                <li><a href="#">Студию</a></li>
-                                <li><a href="#">1-комнатную</a></li>
-                                <li><a href="#">2-комнатную</a></li>
-                                <li><a href="#">3-комнатную и более</a></li>
+                                <li><a href="{{ path('category_studio_items', {alias: 'prodazha', category: 'kvartira'}) }}">Студию</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'prodazha', category: 'kvartira', num: 1}) }}">1-комнатную</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'prodazha', category: 'kvartira', num: 2}) }}">2-комнатную</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'prodazha', category: 'kvartira', num: 3}) }}">3-комнатную</a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,10 +26,10 @@
                         <div class="info-catalog-item">
                             <h2>Снять квартиру</h2>
                             <ul>
-                                <li><a href="#">Студию</a></li>
-                                <li><a href="#">1-комнатную</a></li>
-                                <li><a href="#">2-комнатную</a></li>
-                                <li><a href="#">3-комнатную и более</a></li>
+                                <li><a href="{{ path('category_studio_items', {alias: 'arenda', category: 'kvartira'}) }}">Студию</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'arenda', category: 'kvartira', num: 1}) }}">1-комнатную</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'arenda', category: 'kvartira', num: 2}) }}">2-комнатную</a></li>
+                                <li><a href="{{ path('category_param_items', {alias: 'arenda', category: 'kvartira', num: 3}) }}">3-комнатную</a></li>
                             </ul>
                         </div>
                     </div>
@@ -41,13 +41,13 @@
                             <ul>
                                 <li><a href="#">Дома, дачи, коттеджи</a></li>
                                 <li><a href="#">Гаражи</a></li>
-                                <li><a href="#">Земельные участки</a></li>
+                                <li><a href="{{ path('category_name_items', {category: 'uchastok'}) }}">Земельные участки</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="item-catalog-block commerce-block">
                         <div class="img-item"> <img src="{{ asset('images/categories/buisnes-cat.jpg') }}" alt="Покупка и аренда коммерческой недвижимости" /> </div>
-                        <a href="#">Коммерческая недвижимость</a>
+                        <a href="{{ path('category_name_items', {category: 'kommercheskaia'}) }}">Коммерческая недвижимость</a>
                 </div>
             </div>
         </div>

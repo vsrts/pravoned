@@ -45,15 +45,26 @@ class ImportHomeCrmData
         $encoder = new XmlEncoder();
         $arrayData = $encoder->decode($xmlData, 'xml');
 
+//        echo "<pre>";
+//        print_r($arrayData);
+//        echo "</pre>";
+//        die();
+
         foreach($arrayData['offer'] as $data){
 
             $data = $this->getBooleanFromString($data);
+
+            if(!array_key_exists('category', $data)){
+                continue;
+            }
 
             $propertyContext = ['groups' => ['import_denormalize']];
             $realty = $this->getDenormalizedObject($data, Property::class, 'code', $data['@internal-id'], $propertyContext);
 
             $type = $this->getTargetObject($data['type'], Type::class, 'typeName');
-            $propertyType = $this->getTargetObject($data['property-type'], PropertyType::class, 'propertyTypeName');
+
+            $propertyTypeData = (array_key_exists('property-type', $data)) ? $data['property-type'] : $data['commercial-type'];
+            $propertyType = $this->getTargetObject($propertyTypeData, PropertyType::class, 'propertyTypeName');
             $category = $this->getTargetObject($data['category'], Category::class, 'categoryName');
             $agent = $this->getDenormalizedObject($data['sales-agent'], Agent::class, 'name', $data['sales-agent']['name']);
 
@@ -91,11 +102,6 @@ class ImportHomeCrmData
         $this->em->flush();
 
 
-        echo "<pre>";
-        print_r($arrayData);
-        echo "</pre>";
-
-
         return "import success";
     }
 
@@ -112,6 +118,9 @@ class ImportHomeCrmData
         $context = array_merge($defaultContext, $context);
 
         if($targetObject){
+            if($targetObject instanceof PropertyParams){
+                $targetObject->setNulls();
+            }
             $context = array_merge($context, [AbstractNormalizer::OBJECT_TO_POPULATE => $targetObject, AbstractObjectNormalizer::DEEP_OBJECT_TO_POPULATE => true]);
         }
 
@@ -158,6 +167,7 @@ class ImportHomeCrmData
             'air-conditioner',
             'shower',
             'parking',
+            'studio'
         ];
         $booleanValues = [
           'true' => true,

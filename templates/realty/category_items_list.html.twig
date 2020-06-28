@@ -32,6 +32,10 @@
                                             {% set delimeter %},{% endset %}
                                         {% endif %}
                                         {{ property.category.categoryName}}
+                                        {% if property.propertyParams.studio %}
+                                            студия
+                                            {% set delimeter %},{% endset %}
+                                        {% endif %}
                                     </span>
                                     <span>
                                         {% if property.propertyParams.floor %}
