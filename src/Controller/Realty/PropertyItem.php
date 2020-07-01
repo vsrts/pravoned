@@ -7,7 +7,6 @@ namespace App\Controller\Realty;
 
 
 use App\Entity\Company;
-use App\Entity\Realty\Category;
 use App\Entity\Realty\Property;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +30,7 @@ class PropertyItem extends AbstractController
     /**
      * @Route("/{alias}/{code}", name="property_item")
      */
-    public function propertyItem(Category $category, string $code){
+    public function propertyItem(string $code){
         $propertyRepository = $this->em->getRepository(Property::class);
         $companyRepository = $this->em->getRepository(Company::class);
 
@@ -40,7 +39,11 @@ class PropertyItem extends AbstractController
 
         $propertyCode = $propertyObject->getCode();
         $structure = self::GALLERY_DESTINATION . $propertyCode;
-        $localImagesList = array_diff(scandir($structure), ['..', '.', 'thumb']);
+        $localImagesList = [];
+        if(is_dir($structure)){
+            $localImagesList = array_diff(scandir($structure), ['..', '.', 'thumb']);
+        }
+
 
         return $this->render('realty/property_item.html.twig', [
             'property' => $propertyObject,

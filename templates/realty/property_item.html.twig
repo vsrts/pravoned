@@ -70,10 +70,15 @@
         <div class="action-item">
             <div class="image-item">
                 <div id="gallery" style="display:none;">
-                    {% for image in imageGallery %}
-                        <img alt="Image 1 Title" src="{{ asset('images/realty-gallery/' ~property.code~ '/thumb/' ~image) }}"
-                             data-image="{{ asset('images/realty-gallery/' ~property.code~ '/' ~image) }}">
-                    {% endfor %}
+                    {% if imageGallery %}
+                        {% for image in imageGallery %}
+                            <img src="{{ asset('images/realty-gallery/' ~property.code~ '/thumb/' ~image) }}"
+                                 data-image="{{ asset('images/realty-gallery/' ~property.code~ '/' ~image) }}">
+                        {% endfor %}
+                    {% else %}
+                        <img src="{{ asset('images/realty-gallery/not-photo.jpg') }}"
+                             data-image="{{ asset('images/realty-gallery/not-photo.jpg') }}">
+                    {% endif %}
                 </div>
             </div>
             <div class="main-detail">
