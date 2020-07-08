@@ -3,6 +3,7 @@ easy_admin:
       - App\Entity\Realty\Category
       - App\Entity\Realty\Type
       - App\Entity\Company
+      - App\Entity\News\News
 #        # List the entity class name you want to manage
 #        - App\Entity\Product
 #        - App\Entity\Category
