@@ -103,7 +103,7 @@
             <div class="description-item">
                 {% if property.description %}
                     <h2 class="h2-item">Описание</h2>
-                    {{ property.description }}
+                    {{ property.description|raw }}
                 {% endif %}
             </div>
             <div class="more-info-item">
