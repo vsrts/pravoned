@@ -37,7 +37,7 @@ class CategoryItems extends AbstractController
         $companyRepository = $this->em->getRepository(Company::class);
 
         $categoryObject = $categoryRepository->findOneBy(['alias' => $category]);
-        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject]);
+        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject], ['createdAt' => 'DESC']);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [
@@ -57,7 +57,7 @@ class CategoryItems extends AbstractController
 
         $propertyParamsObjects = $propertyParamsRepository->findBy(['rooms' => $num]);
         $categoryObject = $categoryRepository->findOneBy(['alias' => $category]);
-        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject, 'propertyParams' => $propertyParamsObjects]);
+        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject, 'propertyParams' => $propertyParamsObjects], ['createdAt' => 'DESC']);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [
@@ -77,7 +77,7 @@ class CategoryItems extends AbstractController
 
         $propertyParamsObjects = $propertyParamsRepository->findBy(['studio' => true]);
         $categoryObject = $categoryRepository->findOneBy(['alias' => $category]);
-        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject, 'propertyParams' => $propertyParamsObjects]);
+        $propertyObjectList = $propertyRepository->findBy(['type' => $type, 'category' => $categoryObject, 'propertyParams' => $propertyParamsObjects], ['createdAt' => 'DESC']);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [
@@ -95,7 +95,7 @@ class CategoryItems extends AbstractController
         $propertyParamsRepository = $this->em->getRepository(PropertyParams::class);
 
         $propertyParamsObjects = $propertyParamsRepository->findBy(['newFlat' => true]);
-        $propertyObjectList = $propertyRepository->findBy(['propertyParams' => $propertyParamsObjects]);
+        $propertyObjectList = $propertyRepository->findBy(['propertyParams' => $propertyParamsObjects], ['createdAt' => 'DESC']);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [
@@ -113,7 +113,7 @@ class CategoryItems extends AbstractController
         $companyRepository = $this->em->getRepository(Company::class);
 
         $categoryObject = $categoryRepository->findBy(['alias' => $category]);
-        $propertyObjectList = $propertyRepository->findBy(['category' => $categoryObject]);
+        $propertyObjectList = $propertyRepository->findBy(['category' => $categoryObject], ['createdAt' => 'DESC']);
         $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         return $this->render('realty/category_items_list.html.twig', [
