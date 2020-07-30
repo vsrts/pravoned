@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace App\Controller\Realty;
-
 
 use App\Entity\Company;
 use App\Entity\Realty\Property;
