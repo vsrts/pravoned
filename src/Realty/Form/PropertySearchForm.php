@@ -7,6 +7,7 @@ namespace App\Realty\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -16,6 +17,7 @@ class PropertySearchForm extends AbstractType
     {
         $builder
             ->add('type', TextType::class)
+            ->add('send', SubmitType::class)
         ;
     }
 }
