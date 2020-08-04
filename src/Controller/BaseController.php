@@ -15,19 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
 class BaseController extends AbstractController
 {
     const COMPANY_ID = 1;
+
     /**
      * @var EntityManagerInterface
      */
     private $em;
-    /**
-     * @var Request
-     */
-    private $request;
 
-    public function __construct(EntityManagerInterface $em, Request $request)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->request = $request;
     }
 
     public function getRepository(string $class){
@@ -52,25 +48,15 @@ class BaseController extends AbstractController
             $propertySearch = new PropertySearchDto();
             $form = $this->createForm(PropertySearchForm::class, $propertySearch,
                 [
-                    'action' => $this->generateUrl('homepage'),
+                    'action' => $this->generateUrl('property_search'),
                     'method' => 'GET',
                 ]
             );
 
-            $form->handleRequest($this->request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                // $form->getData() holds the submitted values
-                // but, the original `$task` variable has also been updated
-                $formData = $form->getData();
-
-                // ... perform some action, such as saving the task to the database
-                // for example, if Task is a Doctrine entity, save it!
-                // $entityManager = $this->getDoctrine()->getManager();
-                // $entityManager->persist($task);
-                // $entityManager->flush();
-
-                return $this->redirectToRoute('homepage');
-            }
+//            $form->handleRequest($this->request);
+//            if ($form->isSubmitted() && $form->isValid()) {
+//                $formData = $form->getData();
+//            }
 
             $params['propertySearchForm'] = $form->createView();
         }
