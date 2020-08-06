@@ -45,23 +45,35 @@ class BaseController extends AbstractController
 
         if($options['propertySearchForm'])
         {
-            $propertySearch = new PropertySearchDto();
-            $form = $this->createForm(PropertySearchForm::class, $propertySearch,
-                [
-                    'action' => $this->generateUrl('property_search'),
-                    'method' => 'GET',
-                ]
-            );
-
-//            $form->handleRequest($this->request);
-//            if ($form->isSubmitted() && $form->isValid()) {
-//                $formData = $form->getData();
-//            }
-
-            $params['propertySearchForm'] = $form->createView();
+            $form = $this->getForm()->createView();
+            $params['propertySearchForm'] = $form;
         }
 
         return $this->renderView($view, $params);
+    }
+
+    public function getFormData($request): ?PropertySearchDto
+    {
+        $formData = null;
+        $form = $this->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+        }
+
+        return $formData;
+    }
+
+    private function getForm(){
+        $propertySearch = new PropertySearchDto();
+        $form = $this->createForm(PropertySearchForm::class, $propertySearch,
+            [
+                'action' => $this->generateUrl('property_search'),
+                'method' => 'GET',
+            ]
+        );
+
+        return $form;
     }
 
 }

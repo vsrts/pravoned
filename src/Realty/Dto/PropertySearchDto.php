@@ -8,6 +8,7 @@ namespace App\Realty\Dto;
 
 class PropertySearchDto
 {
+
     private $type;
 
     public function getType()

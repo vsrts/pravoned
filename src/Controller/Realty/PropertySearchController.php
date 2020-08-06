@@ -20,11 +20,13 @@ class PropertySearchController extends BaseController
      */
     public function searchResult(Request $request){
 
+        $formData = $this->getFormData($request);
+
         $propertyRepository = $this->getRepository(Property::class);
         $propertyObjectList = $propertyRepository->findAll();
 
         $contents = $this->getContent(
-            'category_items_list.html.twig',
+            'realty/category_items_list.html.twig',
             ['properties' => $propertyObjectList],
             ['propertySearchForm' => true]
         );
