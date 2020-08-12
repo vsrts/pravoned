@@ -22,8 +22,10 @@ class PropertySearchController extends BaseController
 
         $formData = $this->getFormData($request);
 
+        $findArray = $formData->attributeInArray();
+
         $propertyRepository = $this->getRepository(Property::class);
-        $propertyObjectList = $propertyRepository->findAll();
+        $propertyObjectList = $propertyRepository->findBy($findArray);
 
         $contents = $this->getContent(
             'realty/category_items_list.html.twig',
