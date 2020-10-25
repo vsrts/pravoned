@@ -36,7 +36,7 @@ class MenuBuilder
         $this->upItemFromType($menu);
 
         $menu->addChild('Новостройки', ['route' => 'new_building']);
-        $menu->addChild('Ипотека', ['uri' => 'http://pravoned.ru/uslugi/ipoteka.html']);
+        $menu->addChild('Ипотека', ['uri' => 'http://old.pravoned.ru/uslugi/ipoteka.html']);
 
         return $menu;
     }
@@ -44,12 +44,12 @@ class MenuBuilder
     public function createTopMenu(){
         $menu = $this->factory->createItem('top');
         $menu->addChild('Главная', ['route' => 'homepage']);
-        $menu->addChild('Услуги', ['uri' => 'http://pravoned.ru/uslugi.html']);
+        $menu->addChild('Услуги', ['uri' => 'http://old.pravoned.ru/uslugi.html']);
         $menu->addChild('Агенты', ['uri' => '#']);
-        $menu->addChild('Партнёры', ['uri' => 'http://pravoned.ru/partnjory.html']);
-        $menu->addChild('Отзывы', ['uri' => 'http://pravoned.ru/otzyvy.html']);
-        $menu->addChild('Новости', ['uri' => 'http://pravoned.ru/novosti.html']);
-        $menu->addChild('Контакты', ['uri' => 'http://pravoned.ru/kontakty.html']);
+        $menu->addChild('Партнёры', ['uri' => 'http://old.pravoned.ru/partnjory.html']);
+        $menu->addChild('Отзывы', ['uri' => 'http://old.pravoned.ru/otzyvy.html']);
+        $menu->addChild('Новости', ['uri' => 'http://old.pravoned.ru/novosti.html']);
+        $menu->addChild('Контакты', ['uri' => 'http://old.pravoned.ru/kontakty.html']);
 
         return $menu;
     }
