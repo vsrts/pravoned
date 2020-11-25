@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace App\Entity\News;
+namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -64,7 +64,7 @@ class News
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
