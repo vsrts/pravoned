@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Агентство недвижимости в Новом Уренгое - ООО «Правовая недвижимость»{% endblock %}</title>
         {% block stylesheets %}
             <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
             <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -80,6 +80,7 @@
 
             </div>
     </footer>
+    {{ include('_widgets.html.twig') }}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
