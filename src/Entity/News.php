@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
@@ -46,6 +48,12 @@ class News
     private $image;
 
     /**
+     * @Vich\UploadableField(mapping="news_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
      * @var \DateTimeInterface
      * @ORM\Column(type="datetimetz")
      */
@@ -64,7 +72,7 @@ class News
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -74,7 +82,7 @@ class News
         $this->name = $name;
     }
 
-    public function getPreviewText(): string
+    public function getPreviewText(): ?string
     {
         return $this->previewText;
     }
@@ -104,9 +112,18 @@ class News
         $this->image = $image;
     }
 
-    public function getCreatedAt(): \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
+    }
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
 }

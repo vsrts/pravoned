@@ -16,7 +16,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('EasyAdmin');
+            ->setTitle('Панель управления сайтом');
     }
 
     public function configureCrud(): Crud
@@ -26,9 +26,9 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToCrud('Category', 'fas fa-folder-open', Category::class);
-        yield MenuItem::linkToCrud('Type', 'fas fa-folder-open', Type::class);
-        yield MenuItem::linkToCrud('Company', 'fas fa-folder-open', Company::class);
-        yield MenuItem::linkToCrud('News', 'fas fa-folder-open', News::class);
+        yield MenuItem::linkToCrud('Категории', 'fas fa-folder-open', Category::class);
+        yield MenuItem::linkToCrud('Типы', 'fas fa-folder-open', Type::class);
+        yield MenuItem::linkToCrud('О компании', 'fas fa-folder-open', Company::class);
+        yield MenuItem::linkToCrud('Новости', 'fas fa-folder-open', News::class);
     }
 }

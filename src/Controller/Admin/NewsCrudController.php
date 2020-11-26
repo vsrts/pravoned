@@ -6,9 +6,11 @@ use App\Entity\News;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class NewsCrudController extends AbstractCrudController
 {
@@ -20,8 +22,8 @@ class NewsCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('News')
-            ->setEntityLabelInPlural('News')
+            ->setEntityLabelInSingular('Новость')
+            ->setEntityLabelInPlural('Новости')
             ->setSearchFields(['id', 'name', 'previewText', 'text', 'image']);
     }
 
@@ -31,6 +33,7 @@ class NewsCrudController extends AbstractCrudController
         $previewText = TextareaField::new('previewText');
         $text = TextareaField::new('text');
         $image = TextField::new('image');
+        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class);
         $createdAt = DateTimeField::new('createdAt');
         $id = IntegerField::new('id', 'ID');
 
@@ -39,9 +42,9 @@ class NewsCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_DETAIL === $pageName) {
             return [$id, $name, $previewText, $text, $image, $createdAt];
         } elseif (Crud::PAGE_NEW === $pageName) {
-            return [$name, $previewText, $text, $image, $createdAt];
+            return [$name, $previewText, $text, $imageFile];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$name, $previewText, $text, $image, $createdAt];
+            return [$name, $previewText, $text, $imageFile];
         }
     }
 }
