@@ -12,6 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable()
  */
 class News
 {
@@ -59,10 +60,7 @@ class News
      */
     private $createdAt;
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
+    public function __construct()
     {
         $this->createdAt = new DateTime();
     }
@@ -107,7 +105,7 @@ class News
         return $this->image;
     }
 
-    public function setImage(string $image): void
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
@@ -116,14 +114,20 @@ class News
     {
         return $this->createdAt;
     }
-    public function setImageFile(File $image = null)
+
+    public function setImageFile(File $imageFile = null)
     {
-        $this->imageFile = $image;
+        $this->imageFile = $imageFile;
+
+        if($imageFile){
+            $this->createdAt = new DateTime();
+        }
     }
 
     public function getImageFile()
     {
         return $this->imageFile;
     }
+
 
 }

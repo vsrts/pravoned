@@ -29,18 +29,18 @@ class NewsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $name = TextField::new('name');
-        $previewText = TextareaField::new('previewText');
-        $text = TextareaField::new('text');
-        $image = TextField::new('image');
-        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class);
-        $createdAt = DateTimeField::new('createdAt');
+        $name = TextField::new('name')->setLabel('Заголовок');
+        $previewText = TextareaField::new('previewText')->setLabel('Превью новости');
+        $text = TextareaField::new('text')->setLabel('Основной текст');
+        $image = ImageField::new('image')->setBasePath('/images/news')->setLabel('Изображение новости');
+        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class)->setLabel('Изображение новости');
+        $createdAt = DateTimeField::new('createdAt')->setLabel('Дата создания');
         $id = IntegerField::new('id', 'ID');
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$id, $name, $image, $createdAt];
+            return [$id, $name, $previewText, $image];
         } elseif (Crud::PAGE_DETAIL === $pageName) {
-            return [$id, $name, $previewText, $text, $image, $createdAt];
+            return [$id, $name, $previewText, $text, $image];
         } elseif (Crud::PAGE_NEW === $pageName) {
             return [$name, $previewText, $text, $imageFile];
         } elseif (Crud::PAGE_EDIT === $pageName) {
