@@ -9,7 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class NewsCrudController extends AbstractCrudController
@@ -31,7 +33,7 @@ class NewsCrudController extends AbstractCrudController
     {
         $name = TextField::new('name')->setLabel('Заголовок');
         $previewText = TextareaField::new('previewText')->setLabel('Превью новости');
-        $text = TextareaField::new('text')->setLabel('Основной текст');
+        $text = TextEditorField::new('text')->setLabel('Основной текст');
         $image = ImageField::new('image')->setBasePath('/images/news')->setLabel('Изображение новости');
         $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class)->setLabel('Изображение новости');
         $createdAt = DateTimeField::new('createdAt')->setLabel('Дата создания');

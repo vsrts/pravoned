@@ -3,5 +3,27 @@
 {% block content %}
     <div class="container">
         <h1 class="page-head">Новости</h1>
+        <div class="news-list">
+            {% for item in news %}
+                <div class="news-list-item">
+                    <div class="image-news-item">
+                        {% if item.image is null %}
+                            <img src="{{ asset('images/news/not-photo.jpg') | imagine_filter('news_thumb') }}" />
+                        {% else %}
+                            <img src="{{ asset('/images/news/' ~ item.image) | imagine_filter('news_thumb') }}" />
+                        {% endif %}
+                    </div>
+                    <div class="news-list-name">
+                        {{ item.name }}
+                    </div>
+                    <div class="news-list-preview">
+                        {{ item.previewText }}
+                    </div>
+                    <div class="news-created">
+                        {{ item.createdAt|date("d-m-Y") }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

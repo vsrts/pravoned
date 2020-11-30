@@ -46,11 +46,6 @@ class ImportHomeCrmData
         $arrayData = $encoder->decode($xmlData, 'xml');
         $propertyFromImport = [];
 
-//        echo "<pre>";
-//        print_r($arrayData);
-//        echo "</pre>";
-//        die();
-
         foreach($arrayData['offer'] as $data){
 
             $data = $this->getBooleanFromString($data);
