@@ -2,40 +2,24 @@
 
 declare(strict_types=1);
 
-
 namespace App\Controller\Realty;
 
-
+use App\Controller\BaseController;
 use App\Entity\Company;
 use App\Entity\Realty\Property;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PropertyItem extends AbstractController
+class PropertyItem extends BaseController
 {
-    const COMPANY_ID = 1;
     const GALLERY_DESTINATION = 'images/realty-gallery/';
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
 
     /**
      * @Route("/{alias}/{code}", name="property_item")
      */
     public function propertyItem(string $code){
-        $propertyRepository = $this->em->getRepository(Property::class);
-        $companyRepository = $this->em->getRepository(Company::class);
+        $propertyRepository = $this->getRepository(Property::class);
 
         $propertyObject = $propertyRepository->findOneBy(['code' => $code]);
-        $companyObject = $companyRepository->find(self::COMPANY_ID);
 
         $propertyCode = $propertyObject->getCode();
         $structure = self::GALLERY_DESTINATION . $propertyCode;
@@ -47,7 +31,7 @@ class PropertyItem extends AbstractController
 
         return $this->render('realty/property_item.html.twig', [
             'property' => $propertyObject,
-            'company' => $companyObject,
+            'company' => $this->getCompanyData(),
             'imageGallery' => $localImagesList,
         ]);
     }
