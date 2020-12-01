@@ -2,6 +2,7 @@
 
 {% block content %}
     <div class="banner">
+{#        {{ form(propertySearchForm) }}#}
 {#        <img src="{{ asset('images/search.png') }}" />#}
     </div>
     <div class="container">
@@ -48,13 +49,25 @@
                     <div class="item-catalog-block commerce-block">
                         <div class="img-item"> <img src="{{ asset('images/categories/buisnes-cat.jpg') }}" alt="Покупка и аренда коммерческой недвижимости" /> </div>
                         <a href="{{ path('category_name_items', {category: 'kommercheskaia'}) }}">Коммерческая недвижимость</a>
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="news-block">
-                <h3>Квартиры в новостройках Санкт-Петербурга. Переезжаем в Питер!</h3>
-                <p>АН "Правовая недвижимость", являясь официальным представителем застройщика "Ленстройтрест" в г. Санкт-Петербург, предлагает по ценам от застройщика квартиры в г. С-Петербург в ЖК "IQ Гатчина", ЖК "Jaanila country" (Янила кантри), ЖК...</p>
-                <div class="news-block-more">Подробнее</div>
+                {% if lastNews %}
+                    <h3>{{ lastNews.name }}</h3>
+                    {% if lastNews.image%}
+                        <img class="image-item-preview" src="{{ asset('/images/news/' ~ lastNews.image) | imagine_filter('news_preview') }}" />
+                    {% endif %}
+                    <p class="news-previex-text">{{ lastNews.previewText|u.truncate(150, '...') }}</p>
+                    {% if lastNews.text %}
+                        <div class="news-preview-more">
+                            <a class="news-block-more" href="{{ asset('/news/'~lastNews.id) }}">Подробнее</a>
+                        </div>
+                    {% endif %}
+                    <a class="news-all" href="{{ asset('/news') }}">Посмотреть все новости</a>
+                {% else %}
+                    <h3>Здесь будет отображаться последняя добавленная вами новость</h3>
+                {% endif %}
             </div>
         </div>
 

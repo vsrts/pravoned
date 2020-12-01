@@ -48,7 +48,7 @@ class MenuBuilder
         $menu->addChild('Агенты', ['uri' => '#']);
         $menu->addChild('Партнёры', ['uri' => 'http://old.pravoned.ru/partnjory.html']);
         $menu->addChild('Отзывы', ['uri' => 'http://old.pravoned.ru/otzyvy.html']);
-        $menu->addChild('Новости', ['uri' => 'http://old.pravoned.ru/novosti.html']);
+        $menu->addChild('Новости', ['route' => 'all_news']);
         $menu->addChild('Контакты', ['uri' => 'http://old.pravoned.ru/kontakty.html']);
 
         return $menu;
