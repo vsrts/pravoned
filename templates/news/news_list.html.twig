@@ -6,7 +6,7 @@
         <div class="news-list">
             {% for item in news %}
                 <div class="news-list-item">
-                    <div class="image-news-item">
+                    <div class="image-list-news">
                         {% if item.image is null %}
                             <img src="{{ asset('images/news/not-photo.jpg') | imagine_filter('news_thumb') }}" />
                         {% else %}
@@ -19,8 +19,13 @@
                     <div class="news-list-preview">
                         {{ item.previewText }}
                     </div>
-                    <div class="news-created">
-                        {{ item.createdAt|date("d-m-Y") }}
+                    <div class="news-list-foot">
+                        <div class="news-list-created">
+                            {{ item.createdAt|date("d-m-Y") }}
+                        </div>
+                        {% if item.text %}
+                            <a class="news-more" href="{{ asset('/news/'~item.id) }}">Подробнее</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

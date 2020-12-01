@@ -25,4 +25,14 @@ class NewsController extends BaseController
             'company' => $this->getCompanyData()
         ]);
     }
+
+    /**
+     * @Route("/news/{id}", name="item_news")
+     */
+    public function itemNews(News $news){
+        return $this->render('news/news_item.html.twig', [
+            'news' => $news,
+            'company' => $this->getCompanyData()
+        ]);
+    }
 }
