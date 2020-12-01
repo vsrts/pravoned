@@ -18,7 +18,7 @@ class NewsController extends BaseController
      */
     public function allNews(){
         $newsRepository = $this->getRepository(News::class);
-        $newsObjects = $newsRepository->findAll();
+        $newsObjects = $newsRepository->findBy([],['createdAt' => "DESC"]);
 
         return $this->render('news/news_list.html.twig', [
             'news' => $newsObjects,

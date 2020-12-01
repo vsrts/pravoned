@@ -31,9 +31,11 @@ liip_imagine:
         news_full:
             quality: 100
             filters:
-                # create a thumbnail: set size to 120x90 and use the "outbound" mode
-                # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [600, 600], mode: outbound }
+        news_preview:
+            quality: 100
+            filters:
+                thumbnail: { size: [310, 150], mode: outbound }
 
 
 

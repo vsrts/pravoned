@@ -177,6 +177,13 @@ header .container{
 }
 .news-block h3 {
     font-size: 22px;
+    line-height: 100%;
+}
+.news-previex-text {
+    line-height: 130%;
+    margin: 10px 0;
+    color: #585858;
+    font-size: 15px;
 }
 .news-block-more {
     display: block;
@@ -184,11 +191,28 @@ header .container{
     color: #fff;
     padding: 1px 20px 3px;
     border-radius: 50px;
-    position: absolute;
-    right: 0;
 }
 .news-block-more:hover{
     cursor: pointer;
+    opacity: 0.7;
+    transition: all ease 0.3s;
+    text-decoration: none;
+    color: #fff;
+}
+.news-preview-more {
+    display: flex;
+    justify-content: flex-end;
+}
+.image-item-preview {
+    margin: 5px 0 0;
+}
+.news-all {
+    text-align: center;
+    display: block;
+    margin: 10px 0 0;
+    text-decoration: underline;
+}
+.news-all:hover{
     opacity: 0.7;
     transition: all ease 0.3s;
 }
